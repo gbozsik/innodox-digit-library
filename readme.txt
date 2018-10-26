@@ -4,7 +4,7 @@ nem működött command line-ból futtatva.
 A futtatható library.jar:
 classes/artifacts/library_jar
 
-de java kód editorban lehet megfuttatni a library backend projektet.
+de java kód editorban lehet megfuttatni a library backend projektet, a frontend az src\main\resources\static mappában van build-elve.
 a http://http://localhost:9000-en érhető el a.
 
 Felhasználók:					jelszó:

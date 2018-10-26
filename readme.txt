@@ -1,10 +1,5 @@
 
-Sajnos nem sikerült fel build-elni a backendet, nekem 
-nem működött command line-ból futtatva.
-A futtatható library.jar:
-classes/artifacts/library_jar
-
-kód editorban meg lehet futtatni a library projektet, a frontend az src\main\resources\static mappába be van build-elve.
+A frontend az src\main\resources\static mappába be van build-elve.
 a http://http://localhost:9000-en érhető el
 
 Felhasználók:					jelszó:

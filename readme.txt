@@ -2,7 +2,7 @@
 Sajnos nem sikerült fel build-elni a backendet, nekem 
 nem működött command line-ból futtatva.
 A futtatható library.jar:
-library backend\classes\artifacts\library_jar
+classes/artifacts/library_jar
 
 de java kód editorban lehet megfuttatni a library backend projektet.
 a http://http://localhost:9000-en érhető el a.
@@ -20,9 +20,9 @@ H2 adatbázist használ, amit a DatabaseLoader osztály tölt fel induláskor
 
 
 
-A frontend: library backend\src\main\resources\static mappában van build-elve.
+A frontend: src\main\resources\static mappában van build-elve.
 			
-			de az inno-front mappában is ott van amiből a build készült
+			de a https://github.com/gbozsik/innodox-front.git linken van amiből a build készült
 		
 		-Vue.js keretrendszert használ és az abba épülő vuetify-t
 		

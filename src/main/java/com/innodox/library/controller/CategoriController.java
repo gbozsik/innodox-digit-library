@@ -15,10 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.logging.Logger;
 
-@RequestMapping(value = "${api.base.path}")
+@RequestMapping("/api")
 @Component
 @RestController
-//@RequestMapping("/api")
 public class CategoriController {
 
     private static final Logger logger = Logger.getLogger( BookController.class.getName() );

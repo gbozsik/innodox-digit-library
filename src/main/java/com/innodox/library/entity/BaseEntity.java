@@ -7,6 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+
+/**
+ * Minden entitás/DB tábla kiterjeszti és innen veszik az id-t
+ */
+
 @MappedSuperclass
 public class BaseEntity {
 

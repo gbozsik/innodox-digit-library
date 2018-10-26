@@ -14,11 +14,17 @@ import org.springframework.stereotype.Component;
 import java.util.Collection;
 import java.util.logging.Logger;
 
+
+/**Implementálja a spring inerface-eket és megváltoztatja ami a mi felhasználónk igénye szerint,
+ *hogy mit adunk vissza a Spring-nek a a loadByUserName metódusával
+ */
+
+
+
 @Component
 public class DetailService implements UserDetailsService, UserDetails {
 
     private static final Logger logger = Logger.getLogger(BookController.class.getName());
-
 
     private UserRepo userRepository;
     private User user;
@@ -29,18 +35,13 @@ public class DetailService implements UserDetailsService, UserDetails {
         this.user = user;
     }
 
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        logger.info("USERNAME: " + username);
         User user = userRepository.findByEmail(username);
-        logger.info("User: " + user);
         if (user == null) {
             throw new UsernameNotFoundException(username + " not found!");
         }
         String password = user.getPassword().getPassword();
-        logger.info("password: " + password);
-        logger.info(user.getUsername());
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(),
                 password,
@@ -56,11 +57,10 @@ public class DetailService implements UserDetailsService, UserDetails {
     @Override
     public String getPassword() {
         return null;
-//        return user.getPassword().getPassword();
     }
 
     @Override
-    public String getUsername() {
+    public String getUsername() {           //a username helyett az email-t adja vissza így azt kezeli a Spring felhasználónéként
         return user.getEmail();
     }
 

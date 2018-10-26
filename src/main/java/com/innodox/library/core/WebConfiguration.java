@@ -9,12 +9,18 @@ import org.springframework.web.servlet.resource.PathResourceResolver;
 
 import java.io.IOException;
 
+/**
+ *  Beparaméterezi, hogy a build-elt frontend állományait hol éri el   a STATIC mappában
+ */
+
+
+
 @Configuration
 public class WebConfiguration implements WebMvcConfigurer {
 
     private final String baseApiPath;
 
-        public WebConfiguration(@Value("${api.base.path}") String baseApiPath) {
+        public WebConfiguration(@Value("/api") String baseApiPath) {
             this.baseApiPath = baseApiPath;
         }
 

@@ -1,6 +1,10 @@
 package com.innodox.library.core;
 
 
+                /**ADATBÁZIS FELTÖLTÉS INDíTÁSKOT*/
+
+
+
 import com.innodox.library.entity.Book;
 import com.innodox.library.entity.Category;
 import com.innodox.library.entity.Password;
@@ -49,8 +53,10 @@ public class DatabaseLoader implements ApplicationRunner {
                 "Anna éppen gépel… te jó ég remélem nem\n" +
                 "Anna éppen gépel... szebben énekel, és szexibb\n" +
                 "Riccardo éppen gépel... 1", 7, category1);
-        Book book2 = new Book("A fekete város", "Novum", "Mikszáth Kálmán", "„Minden hazugság egy párhuzamos világot teremt. Egy világot, ahol az a hazugság igaz.”\\n\" +\n" +
-                "                \"(Momus) 2", "TÖRTÉNETÜNK kezdetén egy srác ül az ágyon, és a telefonja kijelzője fölé görnyed a sötétben.\n" +
+        Book book2 = new Book("A fekete város", "Novum", "Mikszáth Kálmán",
+                "„Minden hazugság egy párhuzamos világot teremt. Egy világot, ahol az a hazugság igaz.”\\n\" +\n" +
+                "                \"(Momus) 2",
+                "TÖRTÉNETÜNK kezdetén egy srác ül az ágyon, és a telefonja kijelzője fölé görnyed a sötétben.\n" +
                 "Riccardo éppen gépel… Azt mondta, talán a barátnője is jön.\n" +
                 "Anna éppen gépel… te jó ég remélem nem\n" +
                 "Anna éppen gépel… nem nagyon csípem\n" +
@@ -58,15 +64,19 @@ public class DatabaseLoader implements ApplicationRunner {
                 "Riccardo éppen gépel... És ne feledd, Maria De Filippi egyszer azt mondta neki, hogy ő szebben énekel.\n" +
                 "Anna éppen gépel... szebben énekel, és szexibb\n" +
                 "Riccardo éppen gépel... 2", 4, category2);
-        Book book3 = new Book("A feleségem története", "My-book", "Füst Milán", " „Minden hazugság egy párhuzamos világot teremt. Egy világot, ahol az a hazugság igaz.”\\n\" +\n" +
-                "                \"(Momus) 3", "TÖRTÉNETÜNK kezdetén egy srác ül az ágyon, és a telefonja kijelzője fölé görnyed a sötétben.\n" +
+        Book book3 = new Book("A feleségem története", "My-book", "Füst Milán",
+                " „Minden hazugság egy párhuzamos világot teremt. Egy világot, ahol az a hazugság igaz.”\\n\" +\n" +
+                "                \"(Momus) 3",
+                "TÖRTÉNETÜNK kezdetén egy srác ül az ágyon, és a telefonja kijelzője fölé görnyed a sötétben.\n" +
                 "Riccardo éppen gépel… Azt mondta, talán a barátnője is jön.\n" +
                 "Anna éppen gépel… te jó ég remélem nem\n" +
                 "Anna éppen gépel… nem nagyon csípem\n" +
                 "Anna éppen gépel... szebben énekel, és szexibb\n" +
                 "Riccardo éppen gépel... 3", 7, category3);
-        Book book4 = new Book("A gólyakalifa", "Móra", "Babits Mihály", "„Minden hazugság egy párhuzamos világot teremt. Egy világot, ahol az a hazugság igaz.”\\n\" +\n" +
-                "                \"(Momus) 4", "TÖRTÉNETÜNK kezdetén egy srác ül az ágyon, és a telefonja kijelzője fölé görnyed a sötétben.\n" +
+        Book book4 = new Book("A gólyakalifa", "Móra", "Babits Mihály",
+                "„Minden hazugság egy párhuzamos világot teremt. Egy világot, ahol az a hazugság igaz.”\\n\" +\n" +
+                "                \"(Momus) 4",
+                "TÖRTÉNETÜNK kezdetén egy srác ül az ágyon, és a telefonja kijelzője fölé görnyed a sötétben.\n" +
                 "Riccardo éppen gépel… Azt mondta, talán a barátnője is jön.\n" +
                 "Anna éppen gépel… te jó ég remélem nem\n" +
                 "Anna éppen gépel… nem nagyon csípem\n" +

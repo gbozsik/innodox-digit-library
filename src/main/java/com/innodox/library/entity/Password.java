@@ -1,17 +1,19 @@
 package com.innodox.library.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.Entity;
 
+/**
+ * Azért nem a USER táblában van a jelszó mert így lehetne extrázni a jelszóval pl. lejáratot beállítani
+ */
+
+
+
 @Component
-@Getter
-@Setter
 @Entity
 public class Password extends BaseEntity {
 
@@ -19,7 +21,7 @@ public class Password extends BaseEntity {
 
     @JsonIgnore
     private Long id;
-
+    @JsonIgnore
     private String password;
 
     public Password() {

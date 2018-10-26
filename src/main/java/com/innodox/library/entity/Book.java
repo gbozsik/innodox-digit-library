@@ -1,28 +1,25 @@
 package com.innodox.library.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+//import lombok.Getter;
+//import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
-@Getter
-@Setter
+//@Getter
+//@Setter
 @Entity
 public class Book extends BaseEntity {
 
-    @Column(nullable = false)
+
     private String title;
-    @Column(nullable = false)
     private String publisher;
-    @Column(nullable = false)
     private String author;
-    @Column(nullable = false, length = 200)
+    @Column(length = 200)
     private String preface;
-    @Column(nullable = false, length = 5000)
+    @Column(length = 5000)
     private String content;
-    @Column(nullable = false)
     private Integer quantity;
 
     @ManyToOne

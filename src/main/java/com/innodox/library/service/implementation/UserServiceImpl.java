@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public User getActualUser() {
+    public User getActualUser() {               //A Spring visszaadja az épp bejelentkezett user-t
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userRepo.findByUsername(username);
         return user;

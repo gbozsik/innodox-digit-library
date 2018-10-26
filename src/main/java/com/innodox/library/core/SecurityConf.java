@@ -2,6 +2,7 @@ package com.innodox.library.core;
 
 import com.innodox.library.entity.Password;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -11,7 +12,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.xml.ws.WebServiceException;
 
-@EnableGlobalMethodSecurity(securedEnabled = true) //Mit milyen jogu user érhet el
+
+            /** SPRING SECURITY CONFIGURÁLÁS*/
+
+
+
+@EnableGlobalMethodSecurity(securedEnabled = true)
 @Configuration
 public class SecurityConf extends WebSecurityConfigurerAdapter {
 
@@ -32,7 +38,7 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {              //Megadja, hogy honnan vegye a felhasználókat, azaz a DB-ből
         auth.userDetailsService(detailService).passwordEncoder(Password.PASSWORD_ENCODER);
     }
 
@@ -40,19 +46,20 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
 //
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-//        httpSecurity.cors().and().csrf().disable().authorizeRequests()
-        httpSecurity.authorizeRequests()
-                .antMatchers("/getactualuser").permitAll()
-                .anyRequest().authenticated()
+        httpSecurity.cors().and().csrf().disable().authorizeRequests()
+//        httpSecurity.authorizeRequests()
+                .antMatchers("/api/getactualuser").permitAll()
+                .antMatchers("/api/loggingout").permitAll()
+                .antMatchers("/api/**").authenticated()                 // Minden api hívás autentikáció köteles, kivéve fölötte a kettőt
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .permitAll()
                 .and()
                 .logout().logoutSuccessUrl("/login")
-                .permitAll();
-//                .and()
-//                .httpBasic();
+                .permitAll()
+                .and()
+                .httpBasic().authenticationEntryPoint(new CustomAuthenticationEntryPoint());
         httpSecurity.headers().frameOptions().disable();
     }
 

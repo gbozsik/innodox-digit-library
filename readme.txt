@@ -4,8 +4,8 @@ nem működött command line-ból futtatva.
 A futtatható library.jar:
 classes/artifacts/library_jar
 
-de java kód editorban lehet megfuttatni a library backend projektet, a frontend az src\main\resources\static mappában van build-elve.
-a http://http://localhost:9000-en érhető el a.
+kód editorban meg lehet futtatni a library projektet, a frontend az src\main\resources\static mappába be van build-elve.
+a http://http://localhost:9000-en érhető el
 
 Felhasználók:					jelszó:
 
@@ -27,11 +27,11 @@ A frontend: src\main\resources\static mappában van build-elve.
 		-Vue.js keretrendszert használ és az abba épülő vuetify-t
 		
 		-Wrappelt komponensek vannak  components/core mappában, miket a View-ek implementálnak
-		-store.js ami async metódusokkal (actions) kommunikál a backendel, és sync metódusokkal tárolja a
+		-store.js ami async metódusokkal (actions) kommunikál a backendel, és sync (mutation) metódusokkal tárolja a
 		 kapott adatokat
+		-App.vue a fő View a toolbart, menüt tartalmazza
 		-A View-ben a 
-		   App.vue a fő View a toolbart, menüt tartalmazza	
-			-mounted() betöltéskor fut meg, a 
+		   	-mounted() betöltéskor fut meg, a 
 			-computed() figyeli a a store.js-ben a state-ben tárolt
 			 állapot változók tartalmát
 		-main.js-ben vannak a importálva és konfigurálva a komponensek

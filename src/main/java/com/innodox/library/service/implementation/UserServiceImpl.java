@@ -1,6 +1,8 @@
 package com.innodox.library.service.implementation;
 
+import com.innodox.library.dataobject.UserModel;
 import com.innodox.library.entity.User;
+import com.innodox.library.mapper.UserMapper;
 import com.innodox.library.repo.UserRepo;
 import com.innodox.library.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserServiceImpl implements UserService {
 
     private UserRepo userRepo;
+    @Autowired
+    private UserMapper userMapper;
 
     @Autowired
     public UserServiceImpl(UserRepo userRepo) {
@@ -21,14 +25,20 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public User getActualUser() {               //A Spring visszaadja az épp bejelentkezett user-t
+    public UserModel getActualUser() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        if (username.equals("anonymousUser")){
+            User anonymousUser = new User();
+            anonymousUser.setFirstName("Nincs bejelentkezve");
+            return userMapper.mapUserToUserModel(anonymousUser);
+        }
         User user = userRepo.findByUsername(username);
-        return user;
+        return userMapper.mapUserToUserModel(user);
     }
 
-    @Override
-    public User findByEmail(String email) {
-        return userRepo.findByEmail(email);
-    }
+//    @Override
+//    public UserModel findByEmail(String email) {
+//        User user = userRepo.findByEmail(email);
+//        return UserModel.buildUserModel(user);
+//    }
 }

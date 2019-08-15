@@ -1,14 +1,18 @@
 package com.innodox.library.service;
 
+import com.innodox.library.dataobject.BookModel;
+import com.innodox.library.dataobject.UserModel;
 import com.innodox.library.entity.Book;
 
 import java.util.List;
 
 public interface BookService {
 
-    Book saveBook(Book book) throws Exception;
+    List<BookModel> getBooks();
 
-    List<Book> rentBook(Book book) throws Exception;
+    BookModel saveBook(BookModel bookModel) throws Exception;
 
-    List<Book> bringBackBook(Book book) throws Exception;
+    UserModel rentBook(Long bookId) throws Exception;
+
+    UserModel bringBackBook(Long bookId) throws Exception;
 }

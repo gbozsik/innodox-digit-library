@@ -1,14 +1,16 @@
 package com.innodox.library.repo;
 
+import com.innodox.library.entity.Author;
 import com.innodox.library.entity.Book;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Repository
 public interface BookRepo extends CrudRepository<Book, Long> {
 
 
@@ -16,7 +18,7 @@ public interface BookRepo extends CrudRepository<Book, Long> {
 
     List<Book> findAllByTitle(String title);
 
-    Book findByAuthor(String author);
+    Book findByAuthor(Author author);
 
     Book findById(long id);
 

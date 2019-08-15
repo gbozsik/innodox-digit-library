@@ -1,5 +1,6 @@
 package com.innodox.library.controller;
 
+import com.innodox.library.dataobject.UserModel;
 import com.innodox.library.entity.User;
 import com.innodox.library.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +35,10 @@ public class LoginContorller {
         return new ResponseEntity<>("Logged out", HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/getactualuser", method = RequestMethod.GET)       //aktuális user-t adja vissza
-    public ResponseEntity<User> getActualUser() {
+    @RequestMapping(value = "/getactualuser", method = RequestMethod.GET)
+    public ResponseEntity<UserModel> getActualUser() {
         logger.info(SecurityContextHolder.getContext().getAuthentication().getName());
-        User actualUser = userService.getActualUser();
+        UserModel actualUser = userService.getActualUser();
         return new ResponseEntity<>(actualUser, HttpStatus.OK);
     }
 

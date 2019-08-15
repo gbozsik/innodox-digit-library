@@ -1,12 +1,13 @@
 package com.innodox.library.service;
 
+import com.innodox.library.dataobject.UserModel;
 import com.innodox.library.entity.User;
 import org.springframework.stereotype.Component;
 
 @Component
 public interface UserService {
 
-    User getActualUser();
+    UserModel getActualUser();
 
-    User findByEmail(String email);
+//    UserModel findByEmail(String email);
 }

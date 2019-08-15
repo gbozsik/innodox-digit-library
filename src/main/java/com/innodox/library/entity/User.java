@@ -47,6 +47,14 @@ public class User extends BaseEntity {
         this.bookList = bookList;
         this.roles = roles;
     }
+    public User(String username, String email, String firstName, String lastName, Password password, String[] roles) {
+        this.username = username;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.roles = roles;
+    }
 
     public String getUsername() {
         return username;

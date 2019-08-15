@@ -1,18 +1,27 @@
 package com.innodox.library.entity;
 
-import org.springframework.stereotype.Component;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.util.List;
 
-@Component
+@Getter
+@Setter
 @Entity
 public class Category extends BaseEntity {
 
     @Column(nullable = false)
     private String name;
 
-    public Category(){}
+//    @OneToMany(mappedBy = "category")
+//    private List<Book> bookModelList;
+
+    public Category(){
+        super();
+    }
 
     public Category(String name) {
         this.name = name;

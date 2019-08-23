@@ -38,7 +38,7 @@ public class LoginContorller {
     @RequestMapping(value = "/getactualuser", method = RequestMethod.GET)
     public ResponseEntity<UserModel> getActualUser() {
         logger.info(SecurityContextHolder.getContext().getAuthentication().getName());
-        UserModel actualUser = userService.getActualUser();
+         UserModel actualUser = userService.getActualUser();
         return new ResponseEntity<>(actualUser, HttpStatus.OK);
     }
 

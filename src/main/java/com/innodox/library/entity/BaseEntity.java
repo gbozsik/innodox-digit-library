@@ -1,10 +1,7 @@
 package com.innodox.library.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.tomcat.util.http.fileupload.RequestContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -16,7 +13,6 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Version;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 
 /**
@@ -47,10 +43,16 @@ public class BaseEntity implements Serializable {
     @Column(name = "MODIFIED_AT")
     protected LocalDateTime modifiedAt;
 
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
     @PrePersist
     private void prePersist() {
 //        setCreatedAt(LocalDateTime.now());
         setCreatedAt(LocalDateTime.now());
+
+
 //        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
 //        if (Objects.nonNull(userName)) {
 //            setCreatedBy(userName);

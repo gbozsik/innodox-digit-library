@@ -37,7 +37,7 @@ public class BookController {
     public ResponseEntity<List<BookModel>> getBooks(){
     logger.info("base url: " + "${api.base.path}");
         List<BookModel> bookModels = bookService.getBooks();
-        return new ResponseEntity<List<BookModel>>(bookModels, HttpStatus.OK);
+        return new ResponseEntity<>(bookModels, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/book")
@@ -46,16 +46,22 @@ public class BookController {
         return new ResponseEntity<>(newBookModel, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/book/{bookId}", method = RequestMethod.DELETE)
+    public ResponseEntity<BookModel> saveBooks(@PathVariable("bookId") Long bookId) throws Exception {
+        BookModel newBookModel = bookService.deleteBook(bookId);
+        return new ResponseEntity<>(newBookModel, HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/rent/{bookId}", method = RequestMethod.GET)
     public ResponseEntity<UserModel> rentBook(@PathVariable("bookId") Long bookId) throws Exception {
         UserModel userModel = bookService.rentBook(bookId);
-        return new ResponseEntity<UserModel>(userModel, HttpStatus.OK);
+        return new ResponseEntity<>(userModel, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/bringback/{bookId}", method = RequestMethod.GET)
     public ResponseEntity<UserModel> bringBackBook(@PathVariable("bookId") Long bookId) throws Exception {
         UserModel userModel = bookService.bringBackBook(bookId);
-        return new ResponseEntity<UserModel>(userModel, HttpStatus.OK);
+        return new ResponseEntity<>(userModel, HttpStatus.OK);
     }
 
 

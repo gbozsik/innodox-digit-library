@@ -15,4 +15,6 @@ public interface BookService {
     UserModel rentBook(Long bookId) throws Exception;
 
     UserModel bringBackBook(Long bookId) throws Exception;
+
+    BookModel deleteBook(Long bookId);
 }

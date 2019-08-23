@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 @RestController
 public class CategoriController {
 
-    private static final Logger logger = Logger.getLogger( BookController.class.getName() );
+    private static final Logger logger = Logger.getLogger( BookController.class.getName());
 
     private CategoryRepo categoryRepo;
 
@@ -31,6 +31,7 @@ public class CategoriController {
     @RequestMapping(value = "/categories", method = RequestMethod.GET)
     public ResponseEntity<List<Category>> getCategories(){
         List<Category> categories = categoryRepo.findAll();
-        return new ResponseEntity<List<Category>>(categories, HttpStatus.OK);
+        logger.info(categories.toString());
+        return new ResponseEntity<>(categories, HttpStatus.OK);
     }
 }

@@ -10,12 +10,14 @@ import org.mapstruct.Mappings;
 public interface BookMapper {
 
     @Mappings({
-            @Mapping(target = "author", source = "authorModel")
+            @Mapping(target = "author", source = "authorModel"),
+            @Mapping(target = "category", source = "categoryModel")
     })
     Book mapBookModelToBook(BookModel bookModel);
 
     @Mappings({
-            @Mapping(target = "authorModel", source = "author")
+            @Mapping(target = "authorModel", source = "author"),
+            @Mapping(target = "categoryModel", source = "category")
     })
     BookModel mapBookToBookModel(Book book);
 

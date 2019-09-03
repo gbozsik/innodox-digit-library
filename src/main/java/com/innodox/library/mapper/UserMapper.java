@@ -13,6 +13,4 @@ public interface UserMapper {
             @Mapping(target = "bookModelList", source = "bookList")
     })
     UserModel mapUserToUserModel(User user);
-
-    User mapUserModelToUser(UserModel userModel);
 }

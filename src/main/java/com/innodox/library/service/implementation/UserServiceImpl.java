@@ -1,5 +1,6 @@
 package com.innodox.library.service.implementation;
 
+import com.innodox.library.controller.LoginContorller;
 import com.innodox.library.dataobject.BookModel;
 import com.innodox.library.dataobject.UserModel;
 import com.innodox.library.entity.User;
@@ -13,11 +14,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
+
+     private static final Logger logger = Logger.getLogger(UserServiceImpl.class.getName());
 
     private UserRepo userRepo;
 
@@ -34,6 +38,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserModel getActualUser() {
+        logger.info(SecurityContextHolder.getContext().getAuthentication().getName());
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         if (username.equals("anonymousUser")){
             User anonymousUser = new User();

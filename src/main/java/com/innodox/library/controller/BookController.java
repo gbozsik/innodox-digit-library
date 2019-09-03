@@ -35,7 +35,6 @@ public class BookController {
 
     @RequestMapping(value = "/books", method = RequestMethod.GET)
     public ResponseEntity<List<BookModel>> getBooks(){
-    logger.info("base url: " + "${api.base.path}");
         List<BookModel> bookModels = bookService.getBooks();
         return new ResponseEntity<>(bookModels, HttpStatus.OK);
     }
@@ -47,7 +46,7 @@ public class BookController {
     }
 
     @RequestMapping(value = "/book/{bookId}", method = RequestMethod.DELETE)
-    public ResponseEntity<BookModel> saveBooks(@PathVariable("bookId") Long bookId) throws Exception {
+    public ResponseEntity<BookModel> deleteBooks(@PathVariable("bookId") Long bookId) throws Exception {
         BookModel newBookModel = bookService.deleteBook(bookId);
         return new ResponseEntity<>(newBookModel, HttpStatus.OK);
     }
@@ -63,6 +62,4 @@ public class BookController {
         UserModel userModel = bookService.bringBackBook(bookId);
         return new ResponseEntity<>(userModel, HttpStatus.OK);
     }
-
-
 }

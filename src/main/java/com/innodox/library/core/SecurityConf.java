@@ -13,14 +13,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import javax.xml.ws.WebServiceException;
 
 
-            /** SPRING SECURITY CONFIGURÁLÁS*/
-
+/**
+ * SPRING SECURITY CONFIGURÁLÁS
+ */
 
 
 @EnableGlobalMethodSecurity(securedEnabled = true)
 @Configuration
 public class SecurityConf extends WebSecurityConfigurerAdapter {
-
 
 
     @Autowired
@@ -38,7 +38,7 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {              //Megadja, hogy honnan vegye a felhasználókat, azaz a DB-ből
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(detailService).passwordEncoder(Password.PASSWORD_ENCODER);
     }
 
@@ -50,13 +50,16 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
 //        httpSecurity.authorizeRequests()
                 .antMatchers("/api/getactualuser").permitAll()
                 .antMatchers("/api/loggingout").permitAll()
-                .antMatchers("/api/**").authenticated()                 // Minden api hívás autentikáció köteles, kivéve fölötte a kettőt
+                .antMatchers("/api/**").authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .permitAll()
                 .and()
-                .logout().logoutSuccessUrl("/login")
+                .logout()
+//                .logoutSuccessUrl("/login")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
                 .permitAll()
                 .and()
                 .httpBasic().authenticationEntryPoint(new CustomAuthenticationEntryPoint());

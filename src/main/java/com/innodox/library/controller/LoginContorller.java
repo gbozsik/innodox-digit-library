@@ -32,6 +32,7 @@ public class LoginContorller {
     public ResponseEntity<String> logout() {
         logger.info("ActualUser: " + SecurityContextHolder.getContext().getAuthentication().getName());
         SecurityContextHolder.clearContext();
+        logger.info(SecurityContextHolder.getContext().toString());
         return new ResponseEntity<>("Logged out", HttpStatus.OK);
     }
 

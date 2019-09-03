@@ -4,11 +4,13 @@ import com.innodox.library.dataobject.BookModel;
 import com.innodox.library.dataobject.UserModel;
 import com.innodox.library.entity.Author;
 import com.innodox.library.entity.Book;
+import com.innodox.library.entity.Category;
 import com.innodox.library.entity.User;
 import com.innodox.library.mapper.BookMapper;
 import com.innodox.library.mapper.UserMapper;
 import com.innodox.library.repo.AuthorRepo;
 import com.innodox.library.repo.BookRepo;
+import com.innodox.library.repo.CategoryRepo;
 import com.innodox.library.repo.UserRepo;
 import com.innodox.library.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,7 @@ public class BookServiceImpl implements BookService {
     private BookRepo bookRepo;
     private AuthorRepo authorRepo;
     private UserRepo userRepo;
+    private CategoryRepo categoryRepo;
     private BookMapper bookMapper;
     private UserMapper userMapper;
 
@@ -41,11 +44,12 @@ public class BookServiceImpl implements BookService {
     @Autowired
     public BookServiceImpl(BookRepo bookRepo,
                            AuthorRepo authorRepo, UserRepo userRepo,
-                           BookMapper bookMapper,
+                           CategoryRepo categoryRepo, BookMapper bookMapper,
                            UserMapper userMapper, UserServiceImpl userService) {
         this.bookRepo = bookRepo;
         this.authorRepo = authorRepo;
         this.userRepo = userRepo;
+        this.categoryRepo = categoryRepo;
         this.bookMapper = bookMapper;
         this.userMapper = userMapper;
         this.userService = userService;
@@ -68,26 +72,34 @@ public class BookServiceImpl implements BookService {
             throw new EntityExistsException("This book is already on the list");
         }
         Book newBook = bookMapper.mapBookModelToBook(bookModel);
-        Author author = setAuthor(bookModel);
+        Author author = setAuthorFromBookModel(bookModel);
         newBook.setAuthor(author);
+        newBook.setCategory(setCategoryFromBookModel(bookModel));
         Book savedBook = bookRepo.save(newBook);
         setAuthorsBookList(author, savedBook);
         return bookMapper.mapBookToBookModel(savedBook);
     }
 
-    private BookModel updateBook(BookModel bookModel) {
+    private BookModel updateBook(BookModel bookModel) throws Exception {
         Book bookFromDB = bookRepo.findById(bookModel.getId()).orElse(null);
         if (Objects.isNull(bookFromDB)) {
             throw new EntityNotFoundException("Book not found");
         }
         bookFromDB.setTitle(bookModel.getTitle());
-        bookFromDB.setAuthor(setAuthor(bookModel));
-        bookFromDB.setCategory(bookModel.getCategory());
+        bookFromDB.setAuthor(setAuthorFromBookModel(bookModel));
+        bookFromDB.setCategory(setCategoryFromBookModel(bookModel));
         bookFromDB.setQuantity(bookModel.getQuantity());
         bookFromDB.setContent(bookModel.getContent());
         bookFromDB.setPreface(bookModel.getPreface());
         bookFromDB.setPublisher(bookModel.getPublisher());
         return bookMapper.mapBookToBookModel(bookFromDB);
+    }
+
+    private Category setCategoryFromBookModel(BookModel bookModel) throws Exception {
+        if (Objects.isNull(bookModel.getCategoryModel().getId())) {
+            throw new Exception("Category not found!");
+        }
+        return categoryRepo.findById(bookModel.getCategoryModel().getId()).orElse(null);
     }
 
     private void setAuthorsBookList(Author author, Book savedBook) {
@@ -101,18 +113,16 @@ public class BookServiceImpl implements BookService {
         authorRepo.save(author);
     }
 
-    private Author setAuthor(BookModel bookModel) {
+    private Author setAuthorFromBookModel(BookModel bookModel) {
         if (Objects.isNull(bookModel.getAuthorModel().getId())) {
             Author newAuthor = new Author();
             newAuthor.setFirstName(bookModel.getAuthorModel().getFirstName());
             newAuthor.setLastName(bookModel.getAuthorModel().getLastName());
             newAuthor.setAge(bookModel.getAuthorModel().getAge());
             authorRepo.save(newAuthor);
-//            book.setAuthor(newAuthor);
             return newAuthor;
         } else {
             Author authorFromDB = (authorRepo.findById(bookModel.getAuthorModel().getId()).orElse(null));
-//            book.setAuthor(authorFromDB);
             return authorFromDB;
         }
     }
@@ -124,8 +134,8 @@ public class BookServiceImpl implements BookService {
         List<Book> bookListFromDB = bookRepo.findAllByTitle(bookModel.getTitle());
         for (Book book : bookListFromDB) {
             if (book.getTitle().equals(bookModel.getTitle())
-                    && book.getAuthor().equals(bookModel.getAuthorModel().getFirstName())
-                    && book.getAuthor().equals(bookModel.getAuthorModel().getLastName())) {
+                    && book.getAuthor().getFirstName().equals(bookModel.getAuthorModel().getFirstName())
+                    && book.getAuthor().getLastName().equals(bookModel.getAuthorModel().getLastName())) {
                 return true;
             }
         }
@@ -186,14 +196,14 @@ public class BookServiceImpl implements BookService {
         actualUser.setBookList(usersBooks);
         bookRepo.save(bookFromDB);
         userRepo.save(actualUser);
-        return userMapper.mapUserToUserModel(actualUser);
+        return userService.getUserModelWithBookModelList(actualUser);
     }
 
     @Override
     public BookModel deleteBook(Long bookId) {
         Book bookFromDB = bookRepo.findById(bookId).orElse(null);
         if (Objects.isNull(bookFromDB)) {
-            throw new EntityNotFoundException("Book not found4");
+            throw new EntityNotFoundException("Book not found!");
         } else {
             bookRepo.delete(bookFromDB);
         }

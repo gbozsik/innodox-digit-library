@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 @Component
 public class DetailService implements UserDetailsService, UserDetails {
 
-    private static final Logger logger = Logger.getLogger(BookController.class.getName());
+    private static final Logger logger = Logger.getLogger(DetailService.class.getName());
 
     private UserRepo userRepository;
     private User user;

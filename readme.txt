@@ -1,7 +1,7 @@
 
 Frontend built in src\main\resources\static folder.
 Compile it in your ide, than you can reach the app at localhost:9000 in your browser.
-Or Build it with Gradle, than run the jar file in its folder ~/build/libs/java -jar library-0.0.1-SNAPSHOT.jar
+Or Build it with Gradle, than run the jar file in terminal, in its folder: ~/build/libs/java -jar library-0.0.1-SNAPSHOT.jar
 
 
 Users:					Password:

@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@EqualsAndHashCode(of = {}, callSuper = true)
+@EqualsAndHashCode(of = {"id", "firstName", "lastName"}, callSuper = true)
 public class Author extends BaseEntity {
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
@@ -27,4 +27,6 @@ public class Author extends BaseEntity {
 
     @Column(name = "AGE")
     private Integer age;
+
+
 }

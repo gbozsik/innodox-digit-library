@@ -58,10 +58,4 @@ public class UserServiceImpl implements UserService {
         userModel.setBookModelList(bookModelList);
         return userModel;
     }
-
-//    @Override
-//    public UserModel findByEmail(String email) {
-//        User user = userRepo.findByEmail(email);
-//        return UserModel.buildUserModel(user);
-//    }
 }

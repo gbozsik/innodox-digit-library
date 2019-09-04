@@ -9,8 +9,6 @@ import java.util.List;
 @Entity
 public class User extends BaseEntity {
 
-//    public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
-
     @Column(nullable = false)
     private String username;
     @Column(nullable = false)

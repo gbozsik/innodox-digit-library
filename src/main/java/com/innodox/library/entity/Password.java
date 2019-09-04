@@ -44,8 +44,6 @@ public class Password extends BaseEntity {
         return PASSWORD_ENCODER;
     }
 
-
-
     public Long getId() {
         return id;
     }

@@ -27,6 +27,9 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
     DetailService detailService;
 
     @Autowired
+    CustomAuthenticationProvider customAuthenticationProvider;
+
+    @Autowired
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
@@ -39,7 +42,13 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(detailService).passwordEncoder(Password.PASSWORD_ENCODER);
+        auth.userDetailsService(detailService)
+                .passwordEncoder(Password.PASSWORD_ENCODER);
+        auth.authenticationProvider(customAuthenticationProvider);
+//        auth.inMemoryAuthentication()
+//                .withUser("memuser")
+//                .password(bCryptPasswordEncoder().encode("pass"))
+//                .roles("USER");
     }
 
     //

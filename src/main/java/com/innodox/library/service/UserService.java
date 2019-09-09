@@ -9,5 +9,5 @@ public interface UserService {
 
     UserModel getActualUser();
 
-//    UserModel findByEmail(String email);
+    User findUserByEmail(String email);
 }

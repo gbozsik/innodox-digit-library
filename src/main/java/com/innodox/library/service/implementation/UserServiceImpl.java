@@ -39,18 +39,22 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserModel getActualUser() {
         logger.info(SecurityContextHolder.getContext().getAuthentication().getName());
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        if (username.equals("anonymousUser")){
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        if (email.equals("anonymousUser")){
             User anonymousUser = new User();
             anonymousUser.setFirstName("Nincs bejelentkezve");
             return userMapper.mapUserToUserModel(anonymousUser);
         }
-        User user = userRepo.findByUsername(username);
+        User user = userRepo.findByEmail(email);
         return getUserModelWithBookModelList(user);
     }
 
-    UserModel getUserModelWithBookModelList(User user) {
+    @Override
+    public User findUserByEmail(String email) {
+        return userRepo.findByEmail(email);
+    }
 
+    UserModel getUserModelWithBookModelList(User user) {
         List<BookModel> bookModelList = user.getBookList().stream()
                 .map(book -> bookMapper.mapBookToBookModel(book))
                 .collect(Collectors.toList());

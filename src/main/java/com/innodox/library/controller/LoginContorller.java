@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,11 +29,10 @@ public class LoginContorller {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "/loggingout", method = RequestMethod.GET)      //A backend-en is kilépteti a felhasználót
+    @RequestMapping(value = "/loggingout", method = RequestMethod.GET)
     public ResponseEntity<String> logout() {
         logger.info("ActualUser: " + SecurityContextHolder.getContext().getAuthentication().getName());
         SecurityContextHolder.clearContext();
-        logger.info(SecurityContextHolder.getContext().toString());
         return new ResponseEntity<>("Logged out", HttpStatus.OK);
     }
 
@@ -41,6 +41,11 @@ public class LoginContorller {
         logger.info(SecurityContextHolder.getContext().getAuthentication().getName());
          UserModel actualUser = userService.getActualUser();
         return new ResponseEntity<>(actualUser, HttpStatus.OK);
+    }
+
+    @GetMapping("/ping")
+    public String getPing() {
+        return "OK";
     }
 
 

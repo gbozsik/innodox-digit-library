@@ -152,7 +152,8 @@ public class BookServiceImpl implements BookService {
         userBooks.add(bookFromDB);
         bookRepo.save(bookFromDB);
         userRepo.save(actualUser);
-        return userService.getUserModelWithBookModelList(actualUser);
+        UserModel userModel = userService.getUserModelWithBookModelList(actualUser);
+        return userModel;
     }
 
     private User getUserFromDB() {

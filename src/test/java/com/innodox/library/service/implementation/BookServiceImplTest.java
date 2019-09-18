@@ -51,8 +51,8 @@ public class BookServiceImplTest {
     UserRepo userRepo;
     @Mock
     CategoryRepo categoryRepo;
-    @Mock
-    UserServiceImpl userServiceImpl;
+//    @Mock
+//    UserServiceImpl userServiceImpl;
     @Mock
     SecurityContext securityContext;
     @Mock
@@ -72,7 +72,7 @@ public class BookServiceImplTest {
         userMapper = Mappers.getMapper(UserMapper.class);
         securityContext = Mockito.mock(SecurityContext.class);
         authentication = Mockito.mock(Authentication.class);
-        bookServiceImpl = new BookServiceImpl(bookRepo, authorRepo, userRepo, categoryRepo, bookMapper, userMapper, userServiceImpl);
+        bookServiceImpl = new BookServiceImpl(bookRepo, authorRepo, userRepo, categoryRepo, bookMapper, userMapper, new UserServiceImpl(userRepo, userMapper, bookMapper));
 
         book = new Book();
         bookToRent = new Book();
@@ -123,10 +123,9 @@ public class BookServiceImplTest {
         when(userRepo.findByUsername(any())).thenReturn(user);
         when(securityContext.getAuthentication()).thenReturn(authentication);
         SecurityContextHolder.setContext(securityContext);
-        when(userServiceImpl.getUserModelWithBookModelList(any())).thenReturn(userMapper.mapUserToUserModel(user));
 
         UserModel userModelReturned = bookServiceImpl.rentBook(bookToRent.getId());
-        assertEquals(userModelReturned.getBookModelList().size(), 1);
+        assertEquals(userModelReturned.getBookModelList().size(), 2);
         verify(bookRepo, times(1)).findById(any());
         verify(userRepo, times(1)).findByUsername(any());
     }

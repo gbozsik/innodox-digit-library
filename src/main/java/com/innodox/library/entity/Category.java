@@ -6,16 +6,16 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import java.util.List;
+import javax.persistence.Table;
 
 @Getter
 @Setter
 @Entity
 @NoArgsConstructor
+@Table(name = "CATEGORY", schema = "public")
 public class Category extends BaseEntity {
 
-    @Column(nullable = false)
+    @Column(name = "NAME", nullable = false)
     private String name;
 
     public Category(String name) {

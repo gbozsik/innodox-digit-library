@@ -3,6 +3,7 @@ package com.innodox.library.entity;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import javax.persistence.Table;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,6 +15,7 @@ import java.util.List;
 @Setter
 @Entity
 @EqualsAndHashCode(of = {"id", "firstName", "lastName"}, callSuper = true)
+@Table(name = "AUTHOR", schema = "public")
 public class Author extends BaseEntity {
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
@@ -22,11 +24,9 @@ public class Author extends BaseEntity {
     @Column(name = "FIRST_NAME", nullable = false)
     private String firstName;
 
-    @Column(name = "Last_NAME", nullable = false)
+    @Column(name = "LAST_NAME", nullable = false)
     private String lastName;
 
     @Column(name = "AGE")
     private Integer age;
-
-
 }

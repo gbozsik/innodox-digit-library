@@ -8,10 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Getter
 @Setter
 @Entity
+@Table(name = "BOOK", schema = "public")
 public class Book extends BaseEntity {
 
     @Column(name = "TITLE", nullable = false)
@@ -38,17 +40,4 @@ public class Book extends BaseEntity {
     @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "ID")
     private Category category;
 
-//    public Book() {
-//        super();
-//    }
-
-//    public Book(String title, String publisher, Author author, String preface, String content, Integer quantity, Category category) {
-//        this.title = title;
-//        this.publisher = publisher;
-//        this.author = author;
-//        this.preface = preface;
-//        this.content = content;
-//        this.quantity = quantity;
-//        this.category = category;
-//    }
 }

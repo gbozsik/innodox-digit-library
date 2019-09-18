@@ -1,0 +1,1311 @@
+-- -- -------------------------------------------------------------------------------------------------------------------------
+-- -- Environment -------------------------------------------------------------------------------------------------------------
+-- -- -------------------------------------------------------------------------------------------------------------------------
+--
+-- INSERT INTO test_environment (id, created_at, updated_at, version, description, host, name)
+-- VALUES ('1', sysdate, sysdate, 0, 'DEV környezet (2)', 'http://lnvdevsbx2.erste.hu:7003', 'lnvdevsbx2');
+-- INSERT INTO test_environment (id, created_at, updated_at, version, description, host, name)
+-- VALUES ('2', sysdate, sysdate, 0, 'DEV RC környezet (4)', 'http://lnvdevsbx4.erste.hu:8003', 'lnvdevsbx4');
+-- INSERT INTO test_environment (id, created_at, updated_at, version, description, host, name)
+-- VALUES ('3', sysdate, sysdate, 0, 'DEV környezet (4)', 'http://lnvdevsbx4.erste.hu:7003', 'lnvdevsbx4');
+--
+-- -- -------------------------------------------------------------------------------------------------------------------------
+-- -- Services ----------------------------------------------------------------------------------------------------------------
+-- -- -------------------------------------------------------------------------------------------------------------------------
+-- -- AISP
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('1', sysdate, sysdate,
+--         0,
+--         'AISP',
+--         'listAccounts',
+--         '/v1/AISPRESTService/api/accounts',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/AISPRESTService/#/accounts/getAccountList',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('2',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'AISP',
+--         'getBalance', '/v1/AISPRESTService/api/accounts/{{id}}/balances',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/AISPRESTService/#/account,_balance/getBalances',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('3',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'AISP',
+--         'getTransactionHistory', '/v1/AISPRESTService/api/accounts/{{id}}/transactions',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/AISPRESTService/#/account,_transaction,_history/getTransaction',
+--         'v1');
+-- -- PISP
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('4', sysdate, sysdate,
+--         0,
+--         'PISP', 'getSignType', '/v1/PISPRESTService/api/payments/{{id}}/sign/{{signId}}',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/PISPRESTService/#/payments/getSignTypes',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('5',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'PISP',
+--         'confirmPayment', '/v1/PISPRESTService/api/payments/{{id}}/sign/{{signId}}',
+--         'PUT',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/PISPRESTService/#/payments/confirmPayment',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('6',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'PISP',
+--         'selectSignType', '/v1/PISPRESTService/api/payments/{{id}}/sign/{{signId}}',
+--         'POST',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/PISPRESTService/#/payments/selectSignType',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('7', sysdate, sysdate,
+--         0,
+--         'PISP', 'getPayment', '/v1/PISPRESTService/api/payments/{{id}}',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/PISPRESTService/#/payments/getPayment',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('8', sysdate, sysdate,
+--         0,
+--         'PISP', 'deletePayment', '/v1/PISPRESTService/api/payments/{{id}}',
+--         'DELETE',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/PISPRESTService/#/payments/deletePayment',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('9',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'PISP',
+--         'getPaymentStatus',
+--         '/v1/PISPRESTService/api/payments/{{id}}/status',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/PISPRESTService/#/payments/getPaymentStatus',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('10', sysdate, sysdate,
+--         0,
+--         'PISP',
+--         'listPayments',
+--         '/v1/PISPRESTService/api/payments',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/PISPRESTService/#/payments/listTransactions',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('11', sysdate, sysdate,
+--         0,
+--         'PISP',
+--         'createPayment',
+--         '/v1/PISPRESTService/api/payments',
+--         'POST',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/PISPRESTService/#/payments/createPayment',
+--         'v1');
+-- -- CISP
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('12', sysdate, sysdate,
+--         0,
+--         'CISP',
+--         'hasSufficientBalance',
+--         '/v1/CISPRESTService/api/funds/check',
+--         'POST',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/CISPRESTService/#/funds/hasSufficientBalance',
+--         'v1');
+-- -- GeorgeAccountRESTService
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, george_api_link, service_version)
+-- VALUES ('13',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'GeorgeAccountRESTService',
+--         'listAccounts',
+--         '/v1/GeorgeAccountRESTService/api/netbanking/my/accounts',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/GeorgeAccountRESTService/#/default/listAccounts',
+--         'https://eggeorgenew.docs.apiary.io/#reference/accounts/account-list',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('14',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'GeorgeAccountRESTService',
+--         'signCallBack',
+--         '/v1/GeorgeAccountRESTService/api/signCallback',
+--         'POST',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/GeorgeAccountRESTService/#/default/signCallback',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('15',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'GeorgeAccountRESTService',
+--         'getAccount', '/v1/GeorgeAccountRESTService/api/netbanking/my/accounts/{{id}}',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/GeorgeAccountRESTService/#/account/getAccount',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('16',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'GeorgeAccountRESTService',
+--         'updateStatementDelivery', '/v1/GeorgeAccountRESTService/api/netbanking/my/accounts/{{accountAlias}}/statements/delivery',
+--         'PUT',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/GeorgeAccountRESTService/#/statementDelivery/updateStatementDelivery',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('17',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'GeorgeAccountRESTService',
+--         'getStatementDelivery', '/v1/GeorgeAccountRESTService/api/netbanking/my/accounts/{{id}}/statements/delivery',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/GeorgeAccountRESTService/#/statements/getStatementDelivery',
+--         'v1');
+-- -- GeorgeCardRESTService
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('18',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'GeorgeCardRESTService',
+--         'getCard', '/v1/GeorgeAccountRESTService/api/netbanking/my/cards/{{id}}',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/GeorgeCardRESTService/#/cards/getCard',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('19',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'GeorgeCardRESTService',
+--         'updateCard', '/v1/GeorgeAccountRESTService/api/netbanking/my/cards/{{id}}',
+--         'PUT',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/GeorgeCardRESTService/#/cards/updateCard',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('20',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'GeorgeCardRESTService',
+--         'listCards',
+--         '/v1/GeorgeAccountRESTService/api/netbanking/my/cards',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/GeorgeCardRESTService/#/cards/getCardList',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('21',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'GeorgeCardRESTService',
+--         'getCardLimits', '/v1/GeorgeAccountRESTService/api/netbanking/my/cards/{{id}}/card-limits',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/GeorgeCardRESTService/#/cardLimits/getCardLimits',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('22',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'GeorgeCardRESTService',
+--         'updateCardLimits', '/v1/GeorgeAccountRESTService/api/netbanking/my/cards/{{id}}/card-limits',
+--         'PUT',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/GeorgeCardRESTService/#/cardLimits/updateCardLimits',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('23',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'GeorgeCardRESTService',
+--         'getCardImage', '/v1/GeorgeAccountRESTService/api/netbanking/my/cards/images/{{imageKey}}',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/GeorgeCardRESTService/#/cardLimits/getCardImage',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('24',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'GeorgeCardRESTService',
+--         'setCardAction', '/v1/GeorgeAccountRESTService/api/netbanking/my/cards/{{id}}/states',
+--         'PUT',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/GeorgeCardRESTService/#/cardActions/setCardAction',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('25',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'GeorgeCardRESTService',
+--         'signCallBack',
+--         '/v1/GeorgeAccountRESTService/api/signCallback',
+--         'POST',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/GeorgeCardRESTService/#/default/signCallback',
+--         'v1');
+-- -- GeorgeMessageRESTService
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('26',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'GeorgeMessageRESTService', 'getAttachment', '/v1/GeorgeMessageRESTService/api/netbanking/my/messages/{{id}}/attachments/{{aId}}',
+--         'POST',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/GeorgeMessageRESTService/#/messages/getMessageAttachment',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('27',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'GeorgeMessageRESTService',
+--         'listMessages',
+--         '/v1/GeorgeMessageRESTService/api/netbanking/my/messages',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/GeorgeMessageRESTService/#/messages/listMessages',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('28',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'GeorgeMessageRESTService',
+--         'listMandatoryMessages',
+--         '/v1/GeorgeMessageRESTService/api/netbanking/my/messages/mandatory',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/GeorgeMessageRESTService/#/messages/listMandatoryMessages',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('29',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'GeorgeMessageRESTService', 'getMessage', '/v1/GeorgeMessageRESTService/api/netbanking/my/messages/{{id}}',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/GeorgeMessageRESTService/#/messages/getMessage',
+--         'v1');
+-- -- GeorgeLimitRESTService
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('30',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'GeorgeLimitRESTService',
+--         'listRemainingAuthorizationLimits',
+--         '/v1/GeorgeLimitRESTService/api/netbanking/my/orders/payments/limits',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/GeorgeLimitRESTService/#/limits/listRemainingAuthorizationLimits',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('31',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'GeorgeLimitRESTService',
+--         'listAuthorizationLimits',
+--         '/v1/GeorgeLimitRESTService/api/netbanking/my/authorizationLimits',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/GeorgeLimitRESTService/#/limits/listAuthorizationLimits',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('32',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'GeorgeLimitRESTService', 'getAuthorizationLimits', '/v1/GeorgeLimitRESTService/api/netbanking/my/authorizationLimits/{{id}}',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/GeorgeLimitRESTService/#/limits/getAuthorizationLimits',
+--         'v1');
+-- -- GeorgeUserRESTService
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('33',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'GeorgeUserRESTService',
+--         'listContacts',
+--         '/v1/GeorgeUserRESTService/api/netbanking/my/contacts',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/GeorgeUserRESTService/#/profile/listContacts',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('34',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'GeorgeUserRESTService',
+--         'getProfileLoginInfo',
+--         '/v1/GeorgeUserRESTService/api/netbanking/my/profile/logininfo',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/GeorgeUserRESTService/#/profile/getProfileLoginInfo',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('35',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'GeorgeUserRESTService',
+--         'getUserProfile',
+--         '/v1/GeorgeUserRESTService/api/netbanking/my/profile',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/GeorgeUserRESTService/#/profile/getUserProfile',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('36',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'GeorgeUserRESTService',
+--         'getUserSettings',
+--         '/v1/GeorgeUserRESTService/api/netbanking/my/settings',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/GeorgeUserRESTService/#/settings/getUserSettings',
+--         'v1');
+-- -- GeorgeOrderRESTService
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('37',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'GeorgeOrderRESTService',
+--         'listPayments',
+--         '/v1/GeorgeOrderRESTService/api/netbanking/my/orders/payments',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/GeorgeOrderRESTService/#/orders/getPaymentList',
+--         'v1');
+-- -- GeorgeInfoRESTService
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('38',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'GeorgeInfoRESTService', 'getBranchDetail', '/v1/GeorgeInfoRESTService/api/info/branches/{{id}}',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/GeorgeInfoRESTService/#/branch_detail/getBranchDetail',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('39',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'GeorgeInfoRESTService',
+--         'listBranches',
+--         '/v1/GeorgeInfoRESTService/api/info/branches',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/GeorgeInfoRESTService/#/branch_detail/getBranchList',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('40',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'GeorgeInfoRESTService',
+--         'listCurrencyRates',
+--         '/v1/GeorgeInfoRESTService/api/info/fx',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/GeorgeInfoRESTService/#/exchange_rates/getCurrencyRateList',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('41',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'GeorgeInfoRESTService', 'getCurrencyRate', '/v1/GeorgeInfoRESTService/api/info/fx/{{currency}}',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/GeorgeInfoRESTService/#/exchange_rates/getCurrencyRate',
+--         'v1');
+-- -- AccessControlService
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('42', sysdate, sysdate, 0, 'AccessControlRESTService', 'checkAccount', '/v1/AccessControlRESTService/accessControl/checkAccess', 'GET', '', 'v1');
+-- -- APIAccountMgmtService
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('43',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'APIAccountMgmtService',
+--         'setOpenAPIAccountStatus', '/v1/APIAccountMgmtRESTService/api/accountManagement/setAccountStatus',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/APIAccountMgmtRESTService/#/default/setOpenAPIAccountStatus',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('44',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'APIAccountMgmtService',
+--         'findOpenAccounts', '/v1/APIAccountMgmtRESTService/api/accountManagement/findOpenAccounts',
+--         'POST',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/APIAccountMgmtRESTService/#/default/findOpenAccounts',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('45',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'APIAccountMgmtService',
+--         'listOpenAPIAccounts',
+--         '/v1/APIAccountMgmtRESTService/api/accountManagement/openAccounts',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/APIAccountMgmtRESTService/#/default/listOpenAPIAccounts',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('46',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'APIAccountMgmtService',
+--         'createAccountNameTransaction',
+--         '/v1/APIAccountMgmtRESTService/api/accountManagement/createAccountNameTransaction',
+--         'POST',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/APIAccountMgmtRESTService/#/default/createAccountNameTransaction',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('47',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'APIAccountMgmtService', 'getAuthorizationLimit', '/v1/APIAccountMgmtRESTService/api/accountManagement/limits/authorizationLimits/{{id}}',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/APIAccountMgmtRESTService/#/limits/getAuthorizationLimit',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('48',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'APIAccountMgmtService',
+--         'listRemainingAuthorizationLimits',
+--         '/v1/APIAccountMgmtRESTService/api/accountManagement/limits/remainingAuthorizationLimits',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/APIAccountMgmtRESTService/#/limits/listRemainingAuthorizationLimits',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('49',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'APIAccountMgmtService',
+--         'updateDailyTransactionSum',
+--         '/v1/APIAccountMgmtRESTService/api/accountManagement/limits/updateDailyTransactionSum',
+--         'POST',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/APIAccountMgmtRESTService/#/limits/updateDailyTransactionSum',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('50',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'APIAccountMgmtService',
+--         'updateAuthorizationLimit',
+--         '/v1/APIAccountMgmtRESTService/api/accountManagement/limits/updateAuthorizationLimit',
+--         'POST',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/APIAccountMgmtRESTService/#/limits/updateAuthorizationLimit',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('51',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'APIAccountMgmtService',
+--         'listAuthorizationLimits',
+--         '/v1/APIAccountMgmtRESTService/api/accountManagement/limits/authorizationLimits',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/APIAccountMgmtRESTService/#/limits/listAuthorizationLimits',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('52',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'APIAccountMgmtService',
+--         'listTppCards',
+--         '/v1/APIAccountMgmtRESTService/api/accountManagement/listTppCards',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/APIAccountMgmtRESTService/#/cards/listTppCards',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('53',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'APIAccountMgmtService', 'deleteTppCard', '/v1/APIAccountMgmtRESTService/api/accountManagement/deleteTppCard/{{id}}',
+--         'DELETE',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/APIAccountMgmtRESTService/#/cards/deleteTppCard',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('54',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'APIAccountMgmtService',
+--         'registerTppCard',
+--         '/v1/APIAccountMgmtRESTService/api/accountManagement/registerTppCard',
+--         'POST',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/APIAccountMgmtRESTService/#/cards/registerTppCard',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('55',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'APIAccountMgmtService',
+--         'isRegisteredTppCard',
+--         '/v1/APIAccountMgmtRESTService/api/accountManagement/isRegisteredTppCard',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/APIAccountMgmtRESTService/#/cards/isRegisteredTppCard',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('56',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'APIAccountMgmtService',
+--         'listGeorgeAccounts',
+--         '/v1/APIAccountMgmtRESTService/api/accountManagement/listGeorgeAccount',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/APIAccountMgmtRESTService/#/accounts/listGeorgeAccount',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('57',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'APIAccountMgmtService',
+--         'getGeorgeAccount',
+--         '/v1/APIAccountMgmtRESTService/api/accountManagement/getGeorgeAccount',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/APIAccountMgmtRESTService/#/accounts/getGeorgeAccount',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('58',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'APIAccountMgmtService',
+--         'createStatementDeliveryTransaction',
+--         '/v1/APIAccountMgmtRESTService/api/accountManagement/statementDeliveryTransaction',
+--         'POST',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/APIAccountMgmtRESTService/#/statementDeliveryTransaction/createStatementDeliveryTransaction',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('59',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'APIAccountMgmtService',
+--         'confirmTransaction',
+--         '/v1/APIAccountMgmtRESTService/api/accountManagement/confirmTransaction',
+--         'POST',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/APIAccountMgmtRESTService/#/transactions/confirmTransaction',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('60',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'APIAccountMgmtService', 'getTransactionType', '/v1/APIAccountMgmtRESTService/api/accountManagement/transactionTypeMapping/{{referenceDomain}}/{{reference}}',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/APIAccountMgmtRESTService/#/transactions/getTransactionType',
+--         'v1');
+-- -- TransactionService
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('61',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'TransactionService',
+--         'confirmTransactions',
+--         '/v1/TransactionRESTService/api/transaction/confirm',
+--         'POST',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/TransactionRESTService/#/default/confirmTransactions',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('62',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'TransactionService',
+--         'createTransaction',
+--         '/v1/TransactionRESTService/api/transaction/create',
+--         'POST',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/TransactionRESTService/#/default/createTransaction',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('63',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'TransactionService',
+--         'listTransaction',
+--         '/v1/TransactionRESTService/api/transaction/list',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/TransactionRESTService/#/default/listTransaction',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('64',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'TransactionService', 'listTransaction', '/v1/TransactionRESTService/api/transaction/updatescaresult/{{trxId}}',
+--         'PUT',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/TransactionRESTService/#/default/updateScaResult',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('65',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'TransactionService', 'deleteTransaction', '/v1/TransactionRESTService/api/transaction/{{paymentId}}',
+--         'DELETE',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/TransactionRESTService/#/default/deleteTransaction',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('66',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'TransactionService',
+--         'listDetailedTransaction',
+--         '/v1/TransactionRESTService/api/transaction/list/detailed',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/TransactionRESTService/#/default/listDetailedTransaction',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('67',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'TransactionService', 'setTransactionStatus', '/v1/TransactionRESTService/api/transaction/setstatus/{{paymentId}}',
+--         'PUT',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/TransactionRESTService/#/default/setTransactionStatus',
+--         'v1');
+-- -- SCAService
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('68',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'SCAService',
+--         'checkBackgroundAccessLimit',
+--         '/v1/SCARESTService/api/checkBackgroundAccessLimit',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/SCARESTService/#/default/checkBackgroundAccessLimit',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('69',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'SCAService',
+--         'resetPaymentCounters',
+--         '/v1/SCARESTService/api/paymentCounters',
+--         'DELETE',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/SCARESTService/#/default/resetPaymentCounters',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('70',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'SCAService',
+--         'checkSCAPayment',
+--         '/v1/SCARESTService/api/payment',
+--         'POST',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/SCARESTService/#/default/checkSCAPayment',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('71',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'SCAService',
+--         'getTransactionConsentData',
+--         '/v1/SCARESTService/api/transactionConsentData',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/SCARESTService/#/default/getTransactionConsentData',
+--         'v1');
+-- -- CardService
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('72',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'CardService', 'getCardImage', '/v1/CardRESTService/api/images/{{imageKey}}',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/CardRESTService/#/cardImage/getCardImage',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('73',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'CardService',
+--         'createCardReissuePinTransaction',
+--         '/v1/CardRESTService/api/cardReissuePinTransaction',
+--         'POST',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/CardRESTService/#/cardReissuePinTransaction/createCardReissuePinTransaction',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('74',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'CardService',
+--         'createCardLimitsTransaction',
+--         '/v1/CardRESTService/api/cardLimitsTransaction',
+--         'POST',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/CardRESTService/#/cardLimitsTransaction/createCardLimitsTransaction',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('75',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'CardService',
+--         'createCardActivationTransaction',
+--         '/v1/CardRESTService/api/cardActivationTransaction',
+--         'POST',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/CardRESTService/#/cardActivationTransaction/createCardActivationTransaction',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('76',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'CardService',
+--         'confirmTransaction',
+--         '/v1/CardRESTService/api/confirmTransaction',
+--         'POST',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/CardRESTService/#/transactions/confirmTransaction',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('77',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'CardService',
+--         'getCardTypes',
+--         '/v1/CardRESTService/api/cardTypes',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/CardRESTService/#/cardTypes/getCardTypes',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('78',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'CardService',
+--         'createCardNameTransaction',
+--         '/v1/CardRESTService/api/cardNameTransaction',
+--         'POST',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/CardRESTService/#/createCardNameTransaction/createCardNameTransaction',
+--         'v1');
+-- -- MessageService
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('79',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'MessageService', 'getMessageAttachment', '/v1/MessageRESTService/api/messages/{{id}}/attachments/{{aId}}',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/MessageRESTService/#/messages/getMessageAttachment',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('80',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'MessageService',
+--         'listUserMessages',
+--         '/v1/MessageRESTService/api/messages/',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/MessageRESTService/#/messages/listUserMessages',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('81',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'MessageService',
+--         'listUserMandatoryMessages',
+--         '/v1/MessageRESTService/api/messages/mandatory',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/MessageRESTService/#/messages/listUserMandatoryMessages',
+--         'v1');
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('82',
+--         sysdate,
+--         sysdate,
+--         0,
+--         'MessageService', 'getMessage', '/v1/MessageRESTService/api/messages/{{id}}',
+--         'GET',
+--         'http://lnvdevsbx2.erste.hu:7003/v1/MessageRESTService/#/messages/getMessage',
+--         'v1');
+-- -- UserAcivityLogService
+-- INSERT INTO rest_url_path (id, created_at, updated_at, version, micro_service_name, name, path, rest_method, swagger, service_version)
+-- VALUES ('83', sysdate, sysdate, 0, 'UserAcivityLogService', 'listUserActivity', '/v1/UserActivityLogRESTService/api/useractivitylog/listUserActivity', 'GET', '', 'v1');
+--
+-- -- -------------------------------------------------------------------------------------------------------------------------
+-- -- Input values ------------------------------------------------------------------------------------------------------------
+-- -- -------------------------------------------------------------------------------------------------------------------------
+--
+-- -- HEAD
+-- INSERT INTO input_value (id, created_at, updated_at, version, param_type, temp_key, value, description)
+-- VALUES ('1', sysdate, sysdate, 0, 'HEAD', 'PSU-Involved', 'true', 'header PSU-Involved true');
+-- INSERT INTO input_value (id, created_at, updated_at, version, param_type, temp_key, value, description)
+-- VALUES ('2', sysdate, sysdate, 0, 'HEAD', 'Accept-Language', 'HU', 'header Accept-Language HU');
+-- INSERT INTO input_value (id, created_at, updated_at, version, param_type, temp_key, value, description)
+-- VALUES ('3', sysdate, sysdate, 0, 'HEAD', 'token', 'token-wolf-1', 'header token wolf-1');
+-- INSERT INTO input_value (id, created_at, updated_at, version, param_type, temp_key, value, description)
+-- VALUES ('4', sysdate, sysdate, 0, 'HEAD', 'token', 'token-erika-1', 'header token erika-1');
+-- INSERT INTO input_value (id, created_at, updated_at, version, param_type, temp_key, value, description)
+-- VALUES ('5', sysdate, sysdate, 0, 'HEAD', 'token', 'token-fodor-1', 'header token fodor-1');
+-- INSERT INTO input_value (id, created_at, updated_at, version, param_type, temp_key, value, description)
+-- VALUES ('6', sysdate, sysdate, 0, 'HEAD', 'token', 'token-reisz-1', 'header token reisz-1');
+-- INSERT INTO input_value (id, created_at, updated_at, version, param_type, temp_key, value, description)
+-- VALUES ('7', sysdate, sysdate, 0, 'HEAD', 'token', 't-003568', 'header token t-003568');
+-- INSERT INTO input_value (id, created_at, updated_at, version, param_type, temp_key, value, description)
+-- VALUES ('8', sysdate, sysdate, 0, 'HEAD', 'token', 'non_exist_token', 'header token non_exist');
+-- INSERT INTO input_value (id, created_at, updated_at, version, param_type, temp_key, value, description)
+--     -- Account Id
+-- VALUES ('9', sysdate, sysdate, 0, 'PATH', 'id', 'f95b1774-ffaa-3f9d-a7d0-3b6bceff3f14', 'path url account id');
+-- INSERT INTO input_value (id, created_at, updated_at, version, param_type, temp_key, value, description)
+-- VALUES ('10', sysdate, sysdate, 0, 'PATH', 'id', 'd8ffdf42-6bd6-440d-85ee-c9a03d670032', 'path url account id');
+-- INSERT INTO input_value (id, created_at, updated_at, version, param_type, temp_key, value, description)
+-- VALUES ('11', sysdate, sysdate, 0, 'PATH', 'id', '8e52b7ea-98fa-4142-9467-daad93e05d27', 'path url account id');
+-- INSERT INTO input_value (id, created_at, updated_at, version, param_type, temp_key, value, description)
+-- VALUES ('12', sysdate, sysdate, 0, 'PATH', 'id', '823ef86a-e59f-3ee0-98d9-8d8af3cc4738', 'path url account id');
+-- INSERT INTO input_value (id, created_at, updated_at, version, param_type, temp_key, value, description)
+-- VALUES ('13', sysdate, sysdate, 0, 'PATH', 'id', '1de882a7-b23b-3b76-9ca3-06ff624c21d1', 'path url account id');
+-- -- Sort and order
+-- INSERT INTO input_value (id, created_at, updated_at, version, param_type, temp_key, value, description)
+-- VALUES ('14', sysdate, sysdate, 0, 'QUERY_PARAM', 'size', '1', 'query size 1');
+-- INSERT INTO input_value (id, created_at, updated_at, version, param_type, temp_key, value, description)
+-- VALUES ('15', sysdate, sysdate, 0, 'QUERY_PARAM', 'page', '1', 'query page 1');
+-- INSERT INTO input_value (id, created_at, updated_at, version, param_type, temp_key, value, description)
+-- VALUES ('16', sysdate, sysdate, 0, 'QUERY_PARAM', 'order', 'asc', 'query order asc');
+-- INSERT INTO input_value (id, created_at, updated_at, version, param_type, temp_key, value, description)
+-- VALUES ('17', sysdate, sysdate, 0, 'QUERY_PARAM', 'sort', 'bookingdate', 'query sort bookingdate');
+-- -- From and to date
+-- INSERT INTO input_value (id, created_at, updated_at, version, param_type, temp_key, value, description)
+-- VALUES ('18', sysdate, sysdate, 0, 'QUERY_PARAM', 'fromdate', '2018-05-30', 'query fromdate 2018-05-30');
+-- INSERT INTO input_value (id, created_at, updated_at, version, param_type, temp_key, value, description)
+-- VALUES ('19', sysdate, sysdate, 0, 'QUERY_PARAM', 'todate', '2018-12-30', 'query todate 2018-12-30');
+-- -- Others
+-- INSERT INTO EBH_TESTFUL.INPUT_VALUE (ID, CREATED_AT, UPDATED_AT, VERSION, DESCRIPTION, PARAM_TYPE, TEMP_KEY, VALUE)
+-- VALUES ('20', sysdate, sysdate, 0, 'eUserId = 0125089', 'QUERY_PARAM', 'eUserId', '0125089');
+-- INSERT INTO EBH_TESTFUL.INPUT_VALUE (ID, CREATED_AT, UPDATED_AT, VERSION, DESCRIPTION, PARAM_TYPE, TEMP_KEY, VALUE)
+-- VALUES ('21', sysdate, sysdate, 0, 'operation = CREATE_PAYMENT', 'QUERY_PARAM', 'operation', 'CREATE_PAYMENT');
+-- INSERT INTO EBH_TESTFUL.INPUT_VALUE (ID, CREATED_AT, UPDATED_AT, VERSION, DESCRIPTION, PARAM_TYPE, TEMP_KEY, VALUE)
+-- VALUES ('22', sysdate, sysdate, 0, 'clientId = T42194', 'BODY', 'clientId', 'T42194');
+-- INSERT INTO EBH_TESTFUL.INPUT_VALUE (ID, CREATED_AT, UPDATED_AT, VERSION, DESCRIPTION, PARAM_TYPE, TEMP_KEY, VALUE)
+-- VALUES ('23', sysdate, sysdate, 0, 'accountNumber = 0000000053454977', 'BODY', 'accountNumber', '0000000053454977');
+-- INSERT INTO EBH_TESTFUL.INPUT_VALUE (ID, CREATED_AT, UPDATED_AT, VERSION, DESCRIPTION, PARAM_TYPE, TEMP_KEY, VALUE)
+-- VALUES ('24', sysdate, sysdate, 0, 'eUserId = 1582984', 'BODY', 'eUserId', '1582984');
+-- INSERT INTO EBH_TESTFUL.INPUT_VALUE (ID, CREATED_AT, UPDATED_AT, VERSION, DESCRIPTION, PARAM_TYPE, TEMP_KEY, VALUE)
+-- VALUES ('25', sysdate, sysdate, 0, 'QUERY_PARAM eUserId 0125089', 'QUERY_PARAM', 'eUserId', '0125089');
+-- INSERT INTO EBH_TESTFUL.INPUT_VALUE (ID, CREATED_AT, UPDATED_AT, VERSION, DESCRIPTION, PARAM_TYPE, TEMP_KEY, VALUE)
+-- VALUES ('26', sysdate, sysdate, 0, 'QUERY_PARAM queryAccountName', 'QUERY_PARAM', 'queryAccountName', ' ');
+--
+-- -- -------------------------------------------------------------------------------------------------------------------------
+-- -- Assertion ---------------------------------------------------------------------------------------------------------------
+-- -- -------------------------------------------------------------------------------------------------------------------------
+--
+-- INSERT INTO testStepRestAssertion (id, created_at, updated_at, version, code, description)
+-- VALUES ('1', sysdate, sysdate, 0, 'if (responseJson.contains("accounts")) {
+--            return []
+--          }
+--          ["Nem tartalmazza az accounts szót a response!"]', 'Tartalmazza az accounts szót?');
+-- INSERT INTO testStepRestAssertion (id, created_at, updated_at, version, code, description)
+-- VALUES ('2', sysdate, sysdate, 0, 'if (responseJson.contains("balances")) {
+--            return []
+--          }
+--          ["Nem tartalmazza a balances szót a response!"] ', 'Tartalmazza a balances szót?');
+-- INSERT INTO testStepRestAssertion (id, created_at, updated_at, version, code, description)
+-- VALUES ('3', sysdate, sysdate, 0, 'if (responseJson.contains("\"error\":\"UNAUTHORIZED\"")) {
+--             return []
+--         }
+--         ["A válaszban nem szerepelt az UNAUTHORIZED hibaüzenet (errors)!"]', 'A válaszban szerepel az UNAUTHORIZED hibaüzenet (errors-ok között)?');
+-- INSERT INTO testStepRestAssertion (id, created_at, updated_at, version, code, description)
+-- VALUES ('4', sysdate, sysdate, 0, 'if (responseJson.contains("HU58116000060000000082200565")) {
+--             return []
+--         }
+--         ["A válaszban nem szerepelt a HU58116000060000000082200565 IBAN számlaszám!"]', 'A válaszban szerepel a HU58116000060000000082200565 IBAN számlaszám?');
+-- INSERT INTO EBH_TESTFUL.ASSERTION (ID, CREATED_AT, UPDATED_AT, VERSION, CODE, DESCRIPTION)
+-- VALUES ('5', sysdate, sysdate, 0, 'if (responseJson.contains("1250890138000003")) {
+--                    return []
+--                }
+--        ["A válaszban nem szerepelt az 1250890138000003 számlaszám!"]', 'Szerepel a válaszban a 1250890138000003 számlaszám?');
+-- INSERT INTO EBH_TESTFUL.ASSERTION (ID, CREATED_AT, UPDATED_AT, VERSION, CODE, DESCRIPTION)
+-- VALUES ('6', sysdate, sysdate, 0, ' if (responseJson.contains("signState")) {
+--                    return []
+--        }
+--         ["A válaszban nem szerepelt a signState szó!"]', 'A válasz response tartalmazza a signState szót?');
+--
+-- -- -------------------------------------------------------------------------------------------------------------------------
+-- -- Test case ---------------------------------------------------------------------------------------------------------------
+-- -- -------------------------------------------------------------------------------------------------------------------------
+--
+-- INSERT INTO test_case (id, created_at, updated_at, version, description, closed)
+-- VALUES ('1', sysdate, sysdate, 0, 'Számlák listája v1', 0);
+-- INSERT INTO test_case (id, created_at, updated_at, version, description, closed)
+-- VALUES ('2', sysdate, sysdate, 0, 'Számla egyenleg lekérdezése v1', 0);
+-- INSERT INTO test_case (id, created_at, updated_at, version, description, closed)
+-- VALUES ('3', sysdate, sysdate, 0, 'Számla tranzakciók lekérdezése v1', 0);
+-- INSERT INTO test_case (id, created_at, updated_at, version, description, closed)
+-- VALUES ('4', sysdate, sysdate, 0, 'Számlák és egy egyenleg lekérdezése v1', 0);
+-- INSERT INTO EBH_TESTFUL.TEST_CASE (ID, CREATED_AT, UPDATED_AT, VERSION, DESCRIPTION, CLOSED)
+-- VALUES ('5', sysdate, sysdate, 0, '0_TESTFUL AccessControl Checkacces v1', 0);
+-- INSERT INTO EBH_TESTFUL.TEST_CASE (ID, CREATED_AT, UPDATED_AT, VERSION, DESCRIPTION, CLOSED)
+-- VALUES ('6', sysdate, sysdate, 0, '0_TESTFUL Számla lekérdezése elérhetőség ellenőrzéssel', 0);
+-- INSERT INTO EBH_TESTFUL.TEST_CASE (ID, CREATED_AT, UPDATED_AT, VERSION, DESCRIPTION, CLOSED)
+-- VALUES ('7', sysdate, sysdate, 0, '0_TESTFUL ApiAccountMgmt createAccountName v1', 0);
+--
+-- -- -------------------------------------------------------------------------------------------------------------------------
+-- -- Test step ---------------------------------------------------------------------------------------------------------------
+-- -- -------------------------------------------------------------------------------------------------------------------------
+--
+-- INSERT INTO test_step (id, created_at, updated_at, version, decription, step_type, template, rest_url_path_id)
+-- VALUES ('1', sysdate, sysdate, 0, 'AISP listAccounts', 'CALL', '-', '1');
+-- INSERT INTO test_step (id, created_at, updated_at, version, decription, step_type, template, rest_url_path_id)
+-- VALUES ('2', sysdate, sysdate, 0, 'AISP getBalance', 'CALL', '-', '2');
+-- INSERT INTO test_step (id, created_at, updated_at, version, decription, step_type, template, rest_url_path_id)
+-- VALUES ('3', sysdate, sysdate, 0, 'AISP getTransactionHistory', 'CALL', '-', '3');
+-- INSERT INTO test_step (id, created_at, updated_at, version, decription, step_type, template, rest_url_path_id)
+-- VALUES ('4', sysdate, sysdate, 0, 'AISP listAccounts', 'CALL', '-', '1');
+-- INSERT INTO test_step (id, created_at, updated_at, version, decription, step_type, template, rest_url_path_id)
+-- VALUES ('5', sysdate, sysdate, 0, 'Átmásoljuk az első számla azonosítóját', 'COPY', null, null);
+-- INSERT INTO EBH_TESTFUL.TEST_STEP (ID, CREATED_AT, UPDATED_AT, VERSION, DECRIPTION, STEP_TYPE, TEMPLATE, REST_URL_PATH_ID)
+-- VALUES ('6', sysdate, sysdate, 0, 'AccessControl checkAcces CALL', 'CALL', '-', '42');
+-- INSERT INTO EBH_TESTFUL.TEST_STEP (ID, CREATED_AT, UPDATED_AT, VERSION, DECRIPTION, STEP_TYPE, TEMPLATE, REST_URL_PATH_ID)
+-- VALUES ('7', sysdate, sysdate, 0, 'APIAccountMgmt openAccounts CALL', 'CALL', '-', '45');
+-- INSERT INTO EBH_TESTFUL.TEST_STEP (ID, CREATED_AT, UPDATED_AT, VERSION, DECRIPTION, STEP_TYPE, TEMPLATE, REST_URL_PATH_ID)
+-- VALUES ('8', sysdate, sysdate, 0, 'COPY queryEnabled tulajdonságú szla azonosítójának másolása accAlias-ba', 'COPY', null, null);
+-- INSERT INTO EBH_TESTFUL.TEST_STEP (ID, CREATED_AT, UPDATED_AT, VERSION, DECRIPTION, STEP_TYPE, TEMPLATE, REST_URL_PATH_ID)
+-- VALUES ('9', sysdate, sysdate, 0, 'APIAccountMgmt createAccountNameTransaction', 'CALL', '{
+--          "clientId": {{clientId}},
+--          "accountNumber": {{accountNumber}},
+--          "name": "name",
+--          "action": "CREATE_NAME",
+--          "templateId": 0,
+--          "eUserId": {{eUserId}}
+--        }', '46');
+--
+-- -- -------------------------------------------------------------------------------------------------------------------------
+-- -- Test case and test step -------------------------------------------------------------------------------------------------
+-- -- -------------------------------------------------------------------------------------------------------------------------
+--
+-- INSERT INTO TEST_CASE_X_TEST_STEP (test_case_id, test_step_id, step_number)
+-- VALUES ('1', '1', 0);
+-- INSERT INTO TEST_CASE_X_TEST_STEP (test_case_id, test_step_id, step_number)
+-- VALUES ('2', '2', 0);
+-- INSERT INTO TEST_CASE_X_TEST_STEP (test_case_id, test_step_id, step_number)
+-- VALUES ('3', '3', 0);
+-- INSERT INTO TEST_CASE_X_TEST_STEP (test_case_id, test_step_id, step_number)
+-- VALUES ('4', '4', 0);
+-- INSERT INTO TEST_CASE_X_TEST_STEP (test_case_id, test_step_id, step_number)
+-- VALUES ('4', '5', 1);
+-- INSERT INTO TEST_CASE_X_TEST_STEP (test_case_id, test_step_id, step_number)
+-- VALUES ('4', '2', 2);
+-- INSERT INTO EBH_TESTFUL.TEST_STEP_STEP_NUMBER (STEP_NUMBER, TEST_CASE_ID, TEST_STEP_ID)
+-- VALUES (0, '5', '6');
+-- INSERT INTO EBH_TESTFUL.TEST_STEP_STEP_NUMBER (STEP_NUMBER, TEST_CASE_ID, TEST_STEP_ID)
+-- VALUES (0, '6', '7');
+-- INSERT INTO EBH_TESTFUL.TEST_STEP_STEP_NUMBER (STEP_NUMBER, TEST_CASE_ID, TEST_STEP_ID)
+-- VALUES (1, '6', '8');
+-- INSERT INTO EBH_TESTFUL.TEST_STEP_STEP_NUMBER (STEP_NUMBER, TEST_CASE_ID, TEST_STEP_ID)
+-- VALUES (0, '7', '9');
+-- INSERT INTO EBH_TESTFUL.TEST_STEP_STEP_NUMBER (STEP_NUMBER, TEST_CASE_ID, TEST_STEP_ID)
+-- VALUES (2, '6', '2');
+--
+-- -- -------------------------------------------------------------------------------------------------------------------------
+-- -- Test step input ---------------------------------------------------------------------------------------------------------
+-- -- and input values --------------------------------------------------------------------------------------------------------
+-- -- and assertions ----------------------------------------------------------------------------------------------------------
+-- -- -------------------------------------------------------------------------------------------------------------------------
+--
+-- INSERT INTO test_step_input (id, created_at, updated_at, version, test_step_id)
+-- VALUES ('1', sysdate, sysdate, 0, '1');
+-- INSERT INTO test_step_input (id, created_at, updated_at, version, test_step_id)
+-- VALUES ('2', sysdate, sysdate, 0, '1');
+-- INSERT INTO test_step_input (id, created_at, updated_at, version, test_step_id)
+-- VALUES ('3', sysdate, sysdate, 0, '1');
+-- INSERT INTO test_step_input (id, created_at, updated_at, version, test_step_id)
+-- VALUES ('4', sysdate, sysdate, 0, '1');
+-- INSERT INTO test_step_input (id, created_at, updated_at, version, test_step_id)
+-- VALUES ('5', sysdate, sysdate, 0, '1');
+-- INSERT INTO test_step_input (id, created_at, updated_at, version, test_step_id)
+-- VALUES ('6', sysdate, sysdate, 0, '1');
+-- INSERT INTO test_step_input (id, created_at, updated_at, version, test_step_id)
+-- VALUES ('7', sysdate, sysdate, 0, '2');
+-- INSERT INTO EBH_TESTFUL.TEST_STEP_INPUT (ID, CREATED_AT, UPDATED_AT, VERSION, TEST_STEP_ID)
+-- VALUES ('8', sysdate, sysdate, 0, '4');
+-- INSERT INTO EBH_TESTFUL.TEST_STEP_INPUT (ID, CREATED_AT, UPDATED_AT, VERSION, TEST_STEP_ID)
+-- VALUES ('9', sysdate, sysdate, 0, '5');
+-- INSERT INTO EBH_TESTFUL.TEST_STEP_INPUT (ID, CREATED_AT, UPDATED_AT, VERSION, TEST_STEP_ID)
+-- VALUES ('10', sysdate, sysdate, 0, '2');
+-- INSERT INTO EBH_TESTFUL.TEST_STEP_INPUT (ID, CREATED_AT, UPDATED_AT, VERSION, TEST_STEP_ID)
+-- VALUES ('11', sysdate, sysdate, 0, '6');
+-- INSERT INTO EBH_TESTFUL.TEST_STEP_INPUT (ID, CREATED_AT, UPDATED_AT, VERSION, TEST_STEP_ID)
+-- VALUES ('12', sysdate, sysdate, 0, '7');
+-- INSERT INTO EBH_TESTFUL.TEST_STEP_INPUT (ID, CREATED_AT, UPDATED_AT, VERSION, TEST_STEP_ID)
+-- VALUES ('13', sysdate, sysdate, 0, '9');
+-- INSERT INTO EBH_TESTFUL.TEST_STEP_INPUT (ID, CREATED_AT, UPDATED_AT, VERSION, TEST_STEP_ID)
+-- VALUES ('14', sysdate, sysdate, 0, '4');
+-- INSERT INTO EBH_TESTFUL.TEST_STEP_INPUT (ID, CREATED_AT, UPDATED_AT, VERSION, TEST_STEP_ID)
+-- VALUES ('15', sysdate, sysdate, 0, '5');
+-- INSERT INTO EBH_TESTFUL.TEST_STEP_INPUT (ID, CREATED_AT, UPDATED_AT, VERSION, TEST_STEP_ID)
+-- VALUES ('16', sysdate, sysdate, 0, '2');
+-- INSERT INTO EBH_TESTFUL.TEST_STEP_INPUT (ID, CREATED_AT, UPDATED_AT, VERSION, TEST_STEP_ID)
+-- VALUES ('17', sysdate, sysdate, 0, '7');
+-- INSERT INTO EBH_TESTFUL.TEST_STEP_INPUT (ID, CREATED_AT, UPDATED_AT, VERSION, TEST_STEP_ID)
+-- VALUES ('18', sysdate, sysdate, 0, '8');
+-- INSERT INTO EBH_TESTFUL.TEST_STEP_INPUT (ID, CREATED_AT, UPDATED_AT, VERSION, TEST_STEP_ID)
+-- VALUES ('19', sysdate, sysdate, 0, '2');
+--
+-- INSERT INTO TEST_STEP_TO_INPUT_VALUE (test_step_id, input_value_id)
+-- VALUES ('1', '3');
+-- INSERT INTO TEST_STEP_TO_INPUT_VALUE (test_step_id, input_value_id)
+-- VALUES ('1', '1');
+-- INSERT INTO TEST_STEP_TO_INPUT_VALUE (test_step_id, input_value_id)
+-- VALUES ('1', '2');
+-- INSERT INTO TEST_STEP_TO_INPUT_VALUE (test_step_id, input_value_id)
+-- VALUES ('2', '1');
+-- INSERT INTO TEST_STEP_TO_INPUT_VALUE (test_step_id, input_value_id)
+-- VALUES ('2', '2');
+-- INSERT INTO TEST_STEP_TO_INPUT_VALUE (test_step_id, input_value_id)
+-- VALUES ('2', '4');
+-- INSERT INTO TEST_STEP_TO_INPUT_VALUE (test_step_id, input_value_id)
+-- VALUES ('3', '1');
+-- INSERT INTO TEST_STEP_TO_INPUT_VALUE (test_step_id, input_value_id)
+-- VALUES ('3', '2');
+-- INSERT INTO TEST_STEP_TO_INPUT_VALUE (test_step_id, input_value_id)
+-- VALUES ('3', '5');
+-- INSERT INTO TEST_STEP_TO_INPUT_VALUE (test_step_id, input_value_id)
+-- VALUES ('4', '1');
+-- INSERT INTO TEST_STEP_TO_INPUT_VALUE (test_step_id, input_value_id)
+-- VALUES ('4', '2');
+-- INSERT INTO TEST_STEP_TO_INPUT_VALUE (test_step_id, input_value_id)
+-- VALUES ('4', '6');
+-- INSERT INTO TEST_STEP_TO_INPUT_VALUE (test_step_id, input_value_id)
+-- VALUES ('5', '1');
+-- INSERT INTO TEST_STEP_TO_INPUT_VALUE (test_step_id, input_value_id)
+-- VALUES ('5', '2');
+-- INSERT INTO TEST_STEP_TO_INPUT_VALUE (test_step_id, input_value_id)
+-- VALUES ('5', '7');
+-- INSERT INTO TEST_STEP_TO_INPUT_VALUE (test_step_id, input_value_id)
+-- VALUES ('6', '1');
+-- INSERT INTO TEST_STEP_TO_INPUT_VALUE (test_step_id, input_value_id)
+-- VALUES ('6', '2');
+-- INSERT INTO TEST_STEP_TO_INPUT_VALUE (test_step_id, input_value_id)
+-- VALUES ('6', '8');
+-- INSERT INTO TEST_STEP_TO_INPUT_VALUE (test_step_id, input_value_id)
+-- VALUES ('7', '1');
+-- INSERT INTO TEST_STEP_TO_INPUT_VALUE (test_step_id, input_value_id)
+-- VALUES ('7', '3');
+-- INSERT INTO TEST_STEP_TO_INPUT_VALUE (test_step_id, input_value_id)
+-- VALUES ('7', '13');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_INPUTVALUE (TEST_STEP_ID, INPUT_VALUE_ID)
+-- VALUES ('8', '1');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_INPUTVALUE (TEST_STEP_ID, INPUT_VALUE_ID)
+-- VALUES ('8', '2');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_INPUTVALUE (TEST_STEP_ID, INPUT_VALUE_ID)
+-- VALUES ('8', '4');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_INPUTVALUE (TEST_STEP_ID, INPUT_VALUE_ID)
+-- VALUES ('10', '2');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_INPUTVALUE (TEST_STEP_ID, INPUT_VALUE_ID)
+-- VALUES ('10', '1');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_INPUTVALUE (TEST_STEP_ID, INPUT_VALUE_ID)
+-- VALUES ('10', '4');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_INPUTVALUE (TEST_STEP_ID, INPUT_VALUE_ID)
+-- VALUES ('13', '22');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_INPUTVALUE (TEST_STEP_ID, INPUT_VALUE_ID)
+-- VALUES ('11', '20');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_INPUTVALUE (TEST_STEP_ID, INPUT_VALUE_ID)
+-- VALUES ('11', '21');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_INPUTVALUE (TEST_STEP_ID, INPUT_VALUE_ID)
+-- VALUES ('13', '23');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_INPUTVALUE (TEST_STEP_ID, INPUT_VALUE_ID)
+-- VALUES ('13', '24');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_INPUTVALUE (TEST_STEP_ID, INPUT_VALUE_ID)
+-- VALUES ('14', '1');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_INPUTVALUE (TEST_STEP_ID, INPUT_VALUE_ID)
+-- VALUES ('14', '2');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_INPUTVALUE (TEST_STEP_ID, INPUT_VALUE_ID)
+-- VALUES ('14', '3');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_INPUTVALUE (TEST_STEP_ID, INPUT_VALUE_ID)
+-- VALUES ('16', '3');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_INPUTVALUE (TEST_STEP_ID, INPUT_VALUE_ID)
+-- VALUES ('16', '1');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_INPUTVALUE (TEST_STEP_ID, INPUT_VALUE_ID)
+-- VALUES ('16', '2');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_INPUTVALUE (TEST_STEP_ID, INPUT_VALUE_ID)
+-- VALUES ('19', '5');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_INPUTVALUE (TEST_STEP_ID, INPUT_VALUE_ID)
+-- VALUES ('19', '2');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_INPUTVALUE (TEST_STEP_ID, INPUT_VALUE_ID)
+-- VALUES ('19', '1');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_INPUTVALUE (TEST_STEP_ID, INPUT_VALUE_ID)
+-- VALUES ('12', '20');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_INPUTVALUE (TEST_STEP_ID, INPUT_VALUE_ID)
+-- VALUES ('17', '25');
+--
+-- INSERT INTO TEST_STEP_TO_ASSERTION (test_step_id, assertion_id)
+-- VALUES ('1', '1');
+-- INSERT INTO TEST_STEP_TO_ASSERTION (test_step_id, assertion_id)
+-- VALUES ('1', '4');
+-- INSERT INTO TEST_STEP_TO_ASSERTION (test_step_id, assertion_id)
+-- VALUES ('2', '1');
+-- INSERT INTO TEST_STEP_TO_ASSERTION (test_step_id, assertion_id)
+-- VALUES ('3', '1');
+-- INSERT INTO TEST_STEP_TO_ASSERTION (test_step_id, assertion_id)
+-- VALUES ('4', '1');
+-- INSERT INTO TEST_STEP_TO_ASSERTION (test_step_id, assertion_id)
+-- VALUES ('5', '1');
+-- INSERT INTO TEST_STEP_TO_ASSERTION (test_step_id, assertion_id)
+-- VALUES ('6', '3');
+-- INSERT INTO TEST_STEP_TO_ASSERTION (test_step_id, assertion_id)
+-- VALUES ('7', '2');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_ASSERTION (TEST_STEP_ID, ASSERTION_ID)
+-- VALUES ('8', '1');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_ASSERTION (TEST_STEP_ID, ASSERTION_ID)
+-- VALUES ('8', '4');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_ASSERTION (TEST_STEP_ID, ASSERTION_ID)
+-- VALUES ('10', '2');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_ASSERTION (TEST_STEP_ID, ASSERTION_ID)
+-- VALUES ('11', '5');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_ASSERTION (TEST_STEP_ID, ASSERTION_ID)
+-- VALUES ('13', '6');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_ASSERTION (TEST_STEP_ID, ASSERTION_ID)
+-- VALUES ('12', '1');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_ASSERTION (TEST_STEP_ID, ASSERTION_ID)
+-- VALUES ('14', '1');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_ASSERTION (TEST_STEP_ID, ASSERTION_ID)
+-- VALUES ('16', '2');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_ASSERTION (TEST_STEP_ID, ASSERTION_ID)
+-- VALUES ('17', '1');
+-- INSERT INTO EBH_TESTFUL.TESTSTEP_TO_ASSERTION (TEST_STEP_ID, ASSERTION_ID)
+-- VALUES ('19', '2');
+--
+-- -- -------------------------------------------------------------------------------------------------------------------------
+-- -- Data maps ---------------------------------------------------------------------------------------------------------------
+-- -- -------------------------------------------------------------------------------------------------------------------------
+--
+-- INSERT INTO EBH_TESTFUL.DATA_MAP (ID, CREATED_AT, UPDATED_AT, VERSION, PARAM_TYPE_OF_DESTINATION, RESPONSE_JSON_PATH, TEMP_KEY, TEST_STEP_ID)
+-- VALUES ('1', sysdate, sysdate, 0, 'PATH', '$.accounts[0].accountNumber.other.identifierValue', 'id', '5');
+-- INSERT INTO EBH_TESTFUL.DATA_MAP (ID, CREATED_AT, UPDATED_AT, VERSION, PARAM_TYPE_OF_DESTINATION, RESPONSE_JSON_PATH, TEMP_KEY, TEST_STEP_ID)
+-- VALUES ('2', sysdate, sysdate, 0, 'PATH', '$.accounts[0][?(@.statuses[1]==''queryEnabled'')].accountAlias', 'id', '8');
+--
+-- -- -------------------------------------------------------------------------------------------------------------------------
+-- -- Test suite and test suite map -------------------------------------------------------------------------------------------
+-- -- and test step input -----------------------------------------------------------------------------------------------------
+-- -- -------------------------------------------------------------------------------------------------------------------------
+--
+-- -- Test suite
+-- -- INSERT INTO test_suite (id, created_at, updated_at, version, description)
+-- -- VALUES ('1', sysdate, sysdate, 0, 'AISP v1 több számlalista és a végén egy egyenleg');
+-- -- INSERT INTO test_suite (id, created_at, updated_at, version, description)
+-- -- VALUES ('2', sysdate, sysdate, 0, 'AISP v1 számlák lekérdezése majd az egyik egyenlegének lekérdezése');
+-- INSERT INTO EBH_TESTFUL.TEST_SUITE (ID, CREATED_AT, UPDATED_AT, VERSION, DECRIPTION)
+-- VALUES ('3', sysdate, sysdate, 0, '0_TESTFUL  tesztelése');
+--
+-- -- INSERT INTO test_suite_map (id, created_at, updated_at, version, test_case_id)
+-- -- VALUES ('1', sysdate, sysdate, 0, '1');
+-- -- INSERT INTO test_suite_map (id, created_at, updated_at, version, test_case_id)
+-- -- VALUES ('2', sysdate, sysdate, 0, '1');
+-- -- INSERT INTO test_suite_map (id, created_at, updated_at, version, test_case_id)
+-- -- VALUES ('3', sysdate, sysdate, 0, '1');
+-- -- INSERT INTO test_suite_map (id, created_at, updated_at, version, test_case_id)
+-- -- VALUES ('4', sysdate, sysdate, 0, '1');
+-- -- INSERT INTO test_suite_map (id, created_at, updated_at, version, test_case_id)
+-- -- VALUES ('5', sysdate, sysdate, 0, '1');
+-- -- INSERT INTO test_suite_map (id, created_at, updated_at, version, test_case_id)
+-- -- VALUES ('6', sysdate, sysdate, 0, '1');
+-- -- INSERT INTO test_suite_map (id, created_at, updated_at, version, test_case_id)
+-- -- VALUES ('7', sysdate, sysdate, 0, '2');
+-- -- INSERT INTO test_suite_map (id, created_at, updated_at, version, test_case_id)
+-- -- VALUES ('8', sysdate, sysdate, 0, '4');
+-- INSERT INTO EBH_TESTFUL.TEST_SUITE_MAP (ID, CREATED_AT, UPDATED_AT, VERSION, TEST_CASE_ID)
+-- VALUES ('9', sysdate, sysdate, 0, '5');
+-- INSERT INTO EBH_TESTFUL.TEST_SUITE_MAP (ID, CREATED_AT, UPDATED_AT, VERSION, TEST_CASE_ID)
+-- VALUES ('10', sysdate, sysdate, 0, '6');
+-- INSERT INTO EBH_TESTFUL.TEST_SUITE_MAP (ID, CREATED_AT, UPDATED_AT, VERSION, TEST_CASE_ID)
+-- VALUES ('11', sysdate, sysdate, 0, '7');
+-- INSERT INTO EBH_TESTFUL.TEST_SUITE_MAP (ID, CREATED_AT, UPDATED_AT, VERSION, TEST_CASE_ID)
+-- VALUES ('12', sysdate, sysdate, 0, '6');
+--
+-- -- INSERT INTO test_suite_to_test_suite_map (test_suite_id, test_suite_map_id)
+-- -- VALUES ('1', '1');
+-- -- INSERT INTO test_suite_to_test_suite_map (test_suite_id, test_suite_map_id)
+-- -- VALUES ('1', '2');
+-- -- INSERT INTO test_suite_to_test_suite_map (test_suite_id, test_suite_map_id)
+-- -- VALUES ('1', '3');
+-- -- INSERT INTO test_suite_to_test_suite_map (test_suite_id, test_suite_map_id)
+-- -- VALUES ('1', '4');
+-- -- INSERT INTO test_suite_to_test_suite_map (test_suite_id, test_suite_map_id)
+-- -- VALUES ('1', '5');
+-- -- INSERT INTO test_suite_to_test_suite_map (test_suite_id, test_suite_map_id)
+-- -- VALUES ('1', '6');
+-- -- INSERT INTO test_suite_to_test_suite_map (test_suite_id, test_suite_map_id)
+-- -- VALUES ('1', '7');
+-- -- INSERT INTO test_suite_to_test_suite_map (test_suite_id, test_suite_map_id)
+-- -- VALUES ('2', '8');
+-- INSERT INTO EBH_TESTFUL.TEST_SUITE_TO_TEST_SUITE_MAP (TEST_SUITE_ID, TEST_SUITE_MAP_ID)
+-- VALUES ('3', '10');
+-- INSERT INTO EBH_TESTFUL.TEST_SUITE_TO_TEST_SUITE_MAP (TEST_SUITE_ID, TEST_SUITE_MAP_ID)
+-- VALUES ('3', '9');
+-- INSERT INTO EBH_TESTFUL.TEST_SUITE_TO_TEST_SUITE_MAP (TEST_SUITE_ID, TEST_SUITE_MAP_ID)
+-- VALUES ('3', '12');
+-- INSERT INTO EBH_TESTFUL.TEST_SUITE_TO_TEST_SUITE_MAP (TEST_SUITE_ID, TEST_SUITE_MAP_ID)
+-- VALUES ('3', '11');
+--
+-- -- INSERT INTO suite_map_to_step_input (test_suite_map_id, test_step_input_id)
+-- -- VALUES ('1', '1');
+-- -- INSERT INTO suite_map_to_step_input (test_suite_map_id, test_step_input_id)
+-- -- VALUES ('2', '2');
+-- -- INSERT INTO suite_map_to_step_input (test_suite_map_id, test_step_input_id)
+-- -- VALUES ('3', '3');
+-- -- INSERT INTO suite_map_to_step_input (test_suite_map_id, test_step_input_id)
+-- -- VALUES ('4', '4');
+-- -- INSERT INTO suite_map_to_step_input (test_suite_map_id, test_step_input_id)
+-- -- VALUES ('5', '5');
+-- -- INSERT INTO suite_map_to_step_input (test_suite_map_id, test_step_input_id)
+-- -- VALUES ('6', '6');
+-- -- INSERT INTO suite_map_to_step_input (test_suite_map_id, test_step_input_id)
+-- -- VALUES ('7', '7');
+-- -- INSERT INTO EBH_TESTFUL.SUITE_MAP_TO_STEP_INPUT (TEST_SUITE_MAP_ID, TEST_STEP_INPUT_ID)
+-- -- VALUES ('8', '8');
+-- -- INSERT INTO EBH_TESTFUL.SUITE_MAP_TO_STEP_INPUT (TEST_SUITE_MAP_ID, TEST_STEP_INPUT_ID)
+-- -- VALUES ('8', '9');
+-- -- INSERT INTO EBH_TESTFUL.SUITE_MAP_TO_STEP_INPUT (TEST_SUITE_MAP_ID, TEST_STEP_INPUT_ID)
+-- -- VALUES ('8', '10');
+-- INSERT INTO EBH_TESTFUL.SUITE_MAP_TO_STEP_INPUT (TEST_SUITE_MAP_ID, TEST_STEP_INPUT_ID)
+-- VALUES ('9', '11');
+-- INSERT INTO EBH_TESTFUL.SUITE_MAP_TO_STEP_INPUT (TEST_SUITE_MAP_ID, TEST_STEP_INPUT_ID)
+-- VALUES ('10', '12');
+-- INSERT INTO EBH_TESTFUL.SUITE_MAP_TO_STEP_INPUT (TEST_SUITE_MAP_ID, TEST_STEP_INPUT_ID)
+-- VALUES ('11', '13');
+-- INSERT INTO EBH_TESTFUL.SUITE_MAP_TO_STEP_INPUT (TEST_SUITE_MAP_ID, TEST_STEP_INPUT_ID)
+-- VALUES ('12', '17');
+-- INSERT INTO EBH_TESTFUL.SUITE_MAP_TO_STEP_INPUT (TEST_SUITE_MAP_ID, TEST_STEP_INPUT_ID)
+-- VALUES ('12', '18');
+-- INSERT INTO EBH_TESTFUL.SUITE_MAP_TO_STEP_INPUT (TEST_SUITE_MAP_ID, TEST_STEP_INPUT_ID)
+-- VALUES ('12', '19');

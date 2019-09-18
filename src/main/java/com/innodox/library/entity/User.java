@@ -1,33 +1,42 @@
 package com.innodox.library.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.stereotype.Component;
-import javax.persistence.*;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import java.util.List;
 
 @Component
 @Entity
+@Table(name = "USER", schema = "public")
 public class User extends BaseEntity {
 
-    @Column(nullable = false)
+    @Column(name = "USER_NAME", nullable = false)
     private String username;
-    @Column(nullable = false)
+    @Column(name = "EMAIL", nullable = false)
     private String email;
-    @Column(nullable = false)
+    @Column(name = "FIRST_NAME", nullable = false)
     private String firstName;
-    @Column(nullable = false)
+    @Column(name = "LAST_NAME", nullable = false)
     private String lastName;
-    @JsonIgnore
-    @OneToOne(cascade = {CascadeType.ALL})
-    private Password password;
+    @Column(name = "ROLES", nullable = false)
     private String[] roles;
+    @OneToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "PASSWORD_ID", referencedColumnName = "ID")
+    private Password password;
 
 
     @ManyToMany
     @JoinTable(
-        name = "users_books",
-        joinColumns = {@JoinColumn(name = "user_id")},
-        inverseJoinColumns = {@JoinColumn(name = "book_id")}
+        name = "USERS_BOOKS",
+        joinColumns = {@JoinColumn(name = "USER_ID")},
+        inverseJoinColumns = {@JoinColumn(name = "BOOK_ID")}
     )
     private List<Book> bookList;
 

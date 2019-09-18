@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService {
     }
 
     UserModel getUserModelWithBookModelList(User user) {
-        List<BookModel> bookModelList = user.getBookList().stream()
+       List<BookModel> bookModelList = user.getBookList().stream()
                 .map(book -> bookMapper.mapBookToBookModel(book))
                 .collect(Collectors.toList());
         UserModel userModel = userMapper.mapUserToUserModel(user);

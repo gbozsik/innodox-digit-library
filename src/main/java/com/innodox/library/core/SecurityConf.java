@@ -51,8 +51,6 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
 //                .roles("USER");
     }
 
-    //
-//
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.cors().and().csrf().disable().authorizeRequests()

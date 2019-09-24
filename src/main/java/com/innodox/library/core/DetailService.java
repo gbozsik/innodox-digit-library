@@ -1,8 +1,8 @@
 package com.innodox.library.core;
 
-import com.innodox.library.controller.BookController;
 import com.innodox.library.entity.User;
 import com.innodox.library.repo.UserRepo;
+import com.innodox.library.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -27,12 +27,13 @@ public class DetailService implements UserDetailsService, UserDetails {
     private static final Logger logger = Logger.getLogger(DetailService.class.getName());
 
     private UserRepo userRepository;
+    private UserService userService;
     private User user;
 
     @Autowired
-    public DetailService(UserRepo userRepository, User user) {
+    public DetailService(UserRepo userRepository, UserService userService) {
         this.userRepository = userRepository;
-        this.user = user;
+        this.userService = userService;
     }
 
     @Override
@@ -45,7 +46,7 @@ public class DetailService implements UserDetailsService, UserDetails {
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(),
                 password,
-                AuthorityUtils.createAuthorityList(user.getRoles())
+                AuthorityUtils.createAuthorityList(user.getRoleList().toString())
         );
     }
 

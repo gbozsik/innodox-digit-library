@@ -1,0 +1,97 @@
+databaseChangeLog:
+  
+  - changeSet:
+      id: 2019-09-23-2
+      author: stgm
+      changes:
+        - insert:
+            tableName: PASSWORD
+            columns:
+              - column:
+                  name: ID
+                  value: 1
+              - column:
+                  name: VERSION
+                  value: 0
+              - column:
+                  name:  CREATED_AT
+                  value: NOW()
+              - column:
+                  name:  MODIFIED_AT
+                  value: NOW()
+              - column:
+                  name: PASSWORD
+                  value: $2a$10$lDfyoNjY9mQaCQKyPldz/ePKidEkE6FxWS6teqwmyJwIQdPI/yOsu
+  
+  - changeSet:
+      id: 2019-09-23-1
+      author: stgm
+      changes:
+        - insert:
+            tableName: user
+            columns:
+              - column:
+                  name: ID
+                  value: 1
+              - column:
+                  name: VERSION
+                  value: 0
+              - column:
+                  name:  CREATED_AT
+                  value: NOW()
+              - column:
+                  name:  MODIFIED_AT
+                  value: NOW()
+              - column:
+                  name: USER_NAME
+                  value: skovi
+              - column:
+                  name: EMAIL
+                  value: sanyi.kovacs@gmail.com
+              - column:
+                  name: FIRST_NAME
+                  value: Sanyi
+              - column:
+                  name: LAST_NAME
+                  value: Kovács
+              - column:
+                  name: PASSWORD_ID
+                  value: 1
+  
+  - changeSet:
+      id: 2019-09-23-3
+      author: stgm
+      changes:
+        - insert:
+            tableName: ROLE
+            columns:
+              - column:
+                  name: ID
+                  value: 1
+              - column:
+                  name: VERSION
+                  value: 0
+              - column:
+                  name:  CREATED_AT
+                  value: NOW()
+              - column:
+                  name:  MODIFIED_AT
+                  value: NOW()
+              - column:
+                  name: ROLE_NAME
+                  value: ADMIN
+  
+  - changeSet:
+      id: 2019-09-23-4
+      author: stgm
+      changes:
+        - insert:
+            tableName: USERS_ROLES
+            columns:
+              - column:
+                  name: ROLE_ID
+                  value: 1
+              - column:
+                  name: USER_ID
+                  value: 1
+      

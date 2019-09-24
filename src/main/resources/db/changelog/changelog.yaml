@@ -1,0 +1,522 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2019-09-16-1
+      author: stgm
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: AUTHOR_ID_PKEY
+                  name: ID
+                  type: BIGINT
+              - column:
+                  name: VERSION
+                  type: BIGINT
+              - column:
+                  name: CREATED_BY
+                  type: VARCHAR2(15)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: CREATED_AT
+                  type: TIMESTAMP(6)
+              - column:
+                  name: MDIFIED_BY
+                  type: VARCHAR2(15)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: MODIFIED_AT
+                  type: TIMESTAMP(6)
+              - column:
+                  name: FIRST_NAME
+                  type: VARCHAR2(25)
+              - column:
+                  name: LAST_NAME
+                  type: VARCHAR2(25)
+              - column:
+                  name: AGE
+                  type: INTEGER
+            tableName: AUTHOR
+  
+#  - changeSet:
+#      id: 2019-09-16-2
+#      author: stgm
+#      changes:
+#        - createSequence:
+#            cycle: true
+#            incrementBy: 1
+#            maxValue: 999999999
+#            minValue: 1
+#            sequenceName: AUTHOR_SEQ
+#            startValue: 1
+  
+  - changeSet:
+      id: 2019-09-17-3
+      author: stgm
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: BOOK_ID_PKEY
+                  name: ID
+                  type: BIGINT
+              - column:
+                  name: VERSION
+                  type: BIGINT
+              - column:
+                  name: CREATED_BY
+                  type: VARCHAR2(15)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: CREATED_AT
+                  type: TIMESTAMP(6)
+              - column:
+                  name: MDIFIED_BY
+                  type: VARCHAR2(15)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: MODIFIED_AT
+                  type: TIMESTAMP(6)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: TITLE
+                  type: VARCHAR2(25)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: PUBLISHER
+                  type: VARCHAR2(25)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: PREFACE
+                  type: VARCHAR2(25)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: CONTENT
+                  type: CLOB
+              - column:
+                  name: QUANTITY
+                  type: INTEGER
+              - column:
+                  name: AUTHOR_ID
+                  type: BIGINT
+              - column:
+                  name: CATEGORY_ID
+                  type: BIGINT
+            tableName: BOOK
+  
+  - changeSet:
+      id: 2019-09-17-6
+      author: stgm
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: CATEGORY_ID_PKEY
+                  name: ID
+                  type: BIGINT
+              - column:
+                  name: VERSION
+                  type: BIGINT
+              - column:
+                  name: CREATED_BY
+                  type: VARCHAR2(15)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: CREATED_AT
+                  type: TIMESTAMP(6)
+              - column:
+                  name: MDIFIED_BY
+                  type: VARCHAR2(15)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: MODIFIED_AT
+                  type: TIMESTAMP(6)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: NAME
+                  type: VARCHAR2(25)
+            tableName: CATEGORY
+  
+  - changeSet:
+      id: 2019-09-17-4
+      author: stgm
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: AUTHOR_ID
+            baseTableName: BOOK
+            constraintName: BOOK_TO_AUTHOR_FKEY
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+            referencedColumnNames: ID
+            referencedTableName: AUTHOR
+            validate: true
+  
+  - changeSet:
+      id: 2019-09-17-5
+      author: stgm
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: CATEGORY_ID
+            baseTableName: BOOK
+            constraintName: BOOK_TO_CATEGORY_FKEY
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+            referencedColumnNames: ID
+            referencedTableName: CATEGORY
+            validate: true
+  
+  - changeSet:
+      id: 2019-09-17-7
+      author: stgm
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: PASSWORD_ID_PKEY
+                  name: ID
+                  type: BIGINT
+              - column:
+                  name: VERSION
+                  type: BIGINT
+              - column:
+                  name: CREATED_BY
+                  type: VARCHAR2(15)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: CREATED_AT
+                  type: TIMESTAMP(6)
+              - column:
+                  name: MDIFIED_BY
+                  type: VARCHAR2(15)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: MODIFIED_AT
+                  type: TIMESTAMP(6)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: PASSWORD
+                  type: VARCHAR2(255)
+            tableName: PASSWORD
+  
+  - changeSet:
+      id: 2019-09-17-8
+      author: stgm
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: USER_ID_PKEY
+                  name: ID
+                  type: BIGINT
+              - column:
+                  name: VERSION
+                  type: BIGINT
+              - column:
+                  name: CREATED_BY
+                  type: VARCHAR2(15)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: CREATED_AT
+                  type: TIMESTAMP(6)
+              - column:
+                  name: MDIFIED_BY
+                  type: VARCHAR2(15)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: MODIFIED_AT
+                  type: TIMESTAMP(6)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: USER_NAME
+                  type: VARCHAR2(25)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: EMAIL
+                  type: VARCHAR2(50)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: FIRST_NAME
+                  type: VARCHAR2(25)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: LAST_NAME
+                  type: VARCHAR2(25)
+              - column:
+                  name: PASSWORD_ID
+                  type: BIGINT
+            tableName: user
+  
+  - changeSet:
+      id: 2019-09-17-9
+      author: stgm
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: PASSWORD_ID
+            baseTableName: user
+            constraintName: USER_TO_PASSWORD_FKEY
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+            referencedColumnNames: ID
+            referencedTableName: PASSWORD
+            validate: true
+  
+  - changeSet:
+      id: 2019-09-17-10
+      author: stgm
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: USERS_BOOKS_TO_USER_PKEY
+                  name: USER_ID
+                  type: BIGINT
+              - column:
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: USERS_BOOKS_TO_BOOK_PKEY
+                  name: BOOK_ID
+                  type: BIGINT
+            tableName: USERS_BOOKS
+  
+  - changeSet:
+      id: 2019-09-17-11
+      author: stgm
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: USER_ID
+            baseTableName: USERS_BOOKS
+            constraintName: USERS_BOOKS_TO_USER_FKEY
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+            referencedColumnNames: ID
+            referencedTableName: user
+            validate: true
+  
+  - changeSet:
+      id: 2019-09-17-12
+      author: stgm
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: BOOK_ID
+            baseTableName: USERS_BOOKS
+            constraintName: USERS_BOOKS_TO_BOOK_FKEY
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+            referencedColumnNames: ID
+            referencedTableName: BOOK
+            validate: true
+  
+  - changeSet:
+      id: 2019-09-19-1
+      author: stgm
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: ROLE_ID_PKEY
+                  name: ID
+                  type: BIGINT
+              - column:
+                  name: VERSION
+                  type: BIGINT
+              - column:
+                  name: CREATED_BY
+                  type: VARCHAR2(15)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: CREATED_AT
+                  type: TIMESTAMP(6)
+              - column:
+                  name: MDIFIED_BY
+                  type: VARCHAR2(15)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: MODIFIED_AT
+                  type: TIMESTAMP(6)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: ROLE_NAME
+                  type: VARCHAR2(25)
+            tableName: ROLE
+  
+  - changeSet:
+      id: 2019-09-19-2
+      author: stgm
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: USERS_ROLES_TO_ROLE_PKEY
+                  name: ROLE_ID
+                  type: BIGINT
+              - column:
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: USERS_ROLES_TO_USER_PKEY
+                  name: USER_ID
+                  type: BIGINT
+            tableName: USERS_ROLES
+  
+  - changeSet:
+      id: 2019-09-19-3
+      author: stgm
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: ROLE_ID
+            baseTableName: USERS_ROLES
+            constraintName: USERS_ROLES_TO_ROLE_FKEY
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+            referencedColumnNames: ID
+            referencedTableName: ROLE
+            validate: true
+  
+  - changeSet:
+      id: 2019-09-19-4
+      author: stgm
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: USER_ID
+            baseTableName: USERS_ROLES
+            constraintName: USERS_ROLES_TO_USER_FKEY
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+            referencedColumnNames: ID
+            referencedTableName: user
+            validate: true
+  
+#  - changeSet:
+#      id: 2019-09-19-5
+#      author: stgm
+#      changes:
+#        - createSequence:
+#            cycle: true
+#            incrementBy: 1
+#            maxValue: 999999999
+#            minValue: 1
+#            sequenceName: BOOK_SEQ
+#            startValue: 1
+#
+#  - changeSet:
+#      id: 2019-09-19-6
+#      author: stgm
+#      changes:
+#        - createSequence:
+#            cycle: true
+#            incrementBy: 1
+#            maxValue: 999999999
+#            minValue: 1
+#            sequenceName: CATEGORY_SEQ
+#            startValue: 1
+#
+#  - changeSet:
+#      id: 2019-09-19-7
+#      author: stgm
+#      changes:
+#        - createSequence:
+#            cycle: true
+#            incrementBy: 1
+#            maxValue: 999999999
+#            minValue: 1
+#            sequenceName: PASSWORD_SEQ
+#            startValue: 1
+#
+#  - changeSet:
+#      id: 2019-09-19-8
+#      author: stgm
+#      changes:
+#        - createSequence:
+#            cycle: true
+#            incrementBy: 1
+#            maxValue: 999999999
+#            minValue: 1
+#            sequenceName: ROLE_SEQ
+#            startValue: 1
+#
+#  - changeSet:
+#      id: 2019-09-19-9
+#      author: stgm
+#      changes:
+#        - createSequence:
+#            cycle: true
+#            incrementBy: 1
+#            maxValue: 999999999
+#            minValue: 1
+#            sequenceName: user_seq
+#            startValue: 1
+#
+#  - changeSet:
+#      id: 2019-09-19-10
+#      author: stgm
+#      changes:
+#        - createSequence:
+#            cycle: true
+#            incrementBy: 1
+#            maxValue: 999999999
+#            minValue: 1
+#            sequenceName: USERS_BOOKS_SEQ
+#            startValue: 1
+#
+#  - changeSet:
+#      id: 2019-09-19-11
+#      author: stgm
+#      changes:
+#        - createSequence:
+#            cycle: true
+#            incrementBy: 1
+#            maxValue: 999999999
+#            minValue: 1
+#            sequenceName: USERS_ROLES_SEQ
+#            startValue: 1

@@ -3,6 +3,8 @@ package com.innodox.library.entity;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import javax.persistence.CascadeType;
@@ -16,6 +18,7 @@ import java.util.List;
 @Entity
 @EqualsAndHashCode(of = {"id", "firstName", "lastName"}, callSuper = true)
 @Table(name = "AUTHOR", schema = "public")
+@SequenceGenerator(name = "default_gen", sequenceName = "SEQ_AUTHOR")
 public class Author extends BaseEntity {
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)

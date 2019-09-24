@@ -8,12 +8,14 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "BOOK", schema = "public")
+@SequenceGenerator(name = "default_gen", sequenceName = "SEQ_BOOK")
 public class Book extends BaseEntity {
 
     @Column(name = "TITLE", nullable = false)

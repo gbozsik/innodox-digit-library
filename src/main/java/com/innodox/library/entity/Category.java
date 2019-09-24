@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Getter
@@ -13,6 +14,7 @@ import javax.persistence.Table;
 @Entity
 @NoArgsConstructor
 @Table(name = "CATEGORY", schema = "public")
+@SequenceGenerator(name = "default_gen", sequenceName = "SEQ_CATEGORY")
 public class Category extends BaseEntity {
 
     @Column(name = "NAME", nullable = false)

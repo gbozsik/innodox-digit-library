@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 
@@ -16,6 +17,7 @@ import javax.persistence.Table;
 @Setter
 @Entity
 @Table(name = "PASSWORD", schema = "public")
+@SequenceGenerator(name = "default_gen", sequenceName = "SEQ_PASSWORD")
 public class Password extends BaseEntity {
 
     public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();

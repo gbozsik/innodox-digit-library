@@ -2,7 +2,6 @@ package com.innodox.library.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,7 +18,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "USER", schema = "public")
-@SequenceGenerator(name = "default_gen", sequenceName = "seq_user")
+@SequenceGenerator(name = "default_gen", sequenceName = "user_seq", allocationSize = 1)
 public class User extends BaseEntity {
 
     @Column(name = "USER_NAME", nullable = false)

@@ -57,6 +57,64 @@ databaseChangeLog:
               - column:
                   name: PASSWORD_ID
                   value: 1
+
+  - changeSet:
+      id: 2019-09-25-12
+      author: stgm
+      changes:
+        - insert:
+            tableName: PASSWORD
+            columns:
+              - column:
+                  name: ID
+                  value: 2
+              - column:
+                  name: VERSION
+                  value: 0
+              - column:
+                  name:  CREATED_AT
+                  value: NOW()
+              - column:
+                  name:  MODIFIED_AT
+                  value: NOW()
+              - column:
+                  name: PASSWORD
+                  value: $2a$10$lDfyoNjY9mQaCQKyPldz/ePKidEkE6FxWS6teqwmyJwIQdPI/yOsu
+  
+  - changeSet:
+      id: 2019-09-25-1
+      author: stgm
+      changes:
+        - insert:
+            tableName: user
+            columns:
+              - column:
+                  name: ID
+                  value: 2
+              - column:
+                  name: VERSION
+                  value: 0
+              - column:
+                  name:  CREATED_AT
+                  value: NOW()
+              - column:
+                  name:  MODIFIED_AT
+                  value: NOW()
+              - column:
+                  name: USER_NAME
+                  value: sferi
+              - column:
+                  name: EMAIL
+                  value: feri.sos@t-online.com
+              - column:
+                  name: FIRST_NAME
+                  value: Feri
+              - column:
+                  name: LAST_NAME
+                  value: Sós
+              - column:
+                  name: PASSWORD_ID
+                  value: 2
   
   - changeSet:
       id: 2019-09-23-3
@@ -94,4 +152,331 @@ databaseChangeLog:
               - column:
                   name: USER_ID
                   value: 1
-      
+  
+  - changeSet:
+      id: 2019-09-25-2
+      author: stgm
+      changes:
+        - insert:
+            tableName: AUTHOR
+            columns:
+              - column:
+                  name: ID
+                  value: 1
+              - column:
+                  name: VERSION
+                  value: 0
+              - column:
+                  name:  CREATED_AT
+                  value: NOW()
+              - column:
+                  name:  MODIFIED_AT
+                  value: NOW()
+              - column:
+                  name: FIRST_NAME
+                  value: Rózsa
+              - column:
+                  name: LAST_NAME
+                  value: G. Hajnóczy
+              - column:
+                  name: AGE
+                  value: 30
+  
+  - changeSet:
+      id: 2019-09-25-3
+      author: stgm
+      changes:
+        - insert:
+            tableName: AUTHOR
+            columns:
+              - column:
+                  name: ID
+                  value: 2
+              - column:
+                  name: VERSION
+                  value: 0
+              - column:
+                  name:  CREATED_AT
+                  value: NOW()
+              - column:
+                  name:  MODIFIED_AT
+                  value: NOW()
+              - column:
+                  name: FIRST_NAME
+                  value: Troy
+              - column:
+                  name: LAST_NAME
+                  value: Brennan
+              - column:
+                  name: AGE
+                  value: 40
+  
+  - changeSet:
+      id: 2019-09-25-4
+      author: stgm
+      changes:
+        - insert:
+            tableName: AUTHOR
+            columns:
+              - column:
+                  name: ID
+                  value: 3
+              - column:
+                  name: VERSION
+                  value: 0
+              - column:
+                  name:  CREATED_AT
+                  value: NOW()
+              - column:
+                  name:  MODIFIED_AT
+                  value: NOW()
+              - column:
+                  name: FIRST_NAME
+                  value: Katy
+              - column:
+                  name: LAST_NAME
+                  value: Evans
+              - column:
+                  name: AGE
+                  value: 52
+
+  - changeSet:
+      id: 2019-09-25-5
+      author: stgm
+      changes:
+        - insert:
+            tableName: CATEGORY
+            columns:
+              - column:
+                  name: ID
+                  value: 1
+              - column:
+                  name: VERSION
+                  value: 0
+              - column:
+                  name:  CREATED_AT
+                  value: NOW()
+              - column:
+                  name:  MODIFIED_AT
+                  value: NOW()
+              - column:
+                  name: NAME
+                  value: Sci-fi
+                  
+  - changeSet:
+      id: 2019-09-25-6
+      author: stgm
+      changes:
+        - insert:
+            tableName: CATEGORY
+            columns:
+              - column:
+                  name: ID
+                  value: 2
+              - column:
+                  name: VERSION
+                  value: 0
+              - column:
+                  name:  CREATED_AT
+                  value: NOW()
+              - column:
+                  name:  MODIFIED_AT
+                  value: NOW()
+              - column:
+                  name: NAME
+                  value: Thriller
+
+  - changeSet:
+      id: 2019-09-25-7
+      author: stgm
+      changes:
+        - insert:
+            tableName: CATEGORY
+            columns:
+              - column:
+                  name: ID
+                  value: 3
+              - column:
+                  name: VERSION
+                  value: 0
+              - column:
+                  name:  CREATED_AT
+                  value: NOW()
+              - column:
+                  name:  MODIFIED_AT
+                  value: NOW()
+              - column:
+                  name: NAME
+                  value: Novell
+  
+  - changeSet:
+      id: 2019-09-25-8
+      author: stgm
+      changes:
+        - insert:
+            tableName: BOOK
+            columns:
+              - column:
+                  name: ID
+                  value: 1
+              - column:
+                  name: VERSION
+                  value: 0
+              - column:
+                  name:  CREATED_AT
+                  value: NOW()
+              - column:
+                  name:  MODIFIED_AT
+                  value: NOW()
+              - column:
+                  name: TITLE
+                  value: Bengjáli tűz
+              - column:
+                  name: PUBLISHER
+                  value: Móra
+              - column:
+                  name: PREFACE
+                  value: Minden hazugság egy párhuzamos világot teremt. Egy világot, ahol az a hazugság igaz. (Momus)
+              - column:
+                  name: CONTENT
+                  value: TÖRTÉNETÜNK kezdetén egy srác ül az ágyon, és a telefonja kijelzője fölé görnyed a sötétben.
+                    Riccardo éppen gépel… Azt mondta, talán a barátnője is jön.
+                    Anna éppen gépel… te jó ég remélem nem
+                    Anna éppen gépel... szebben énekel, és szexibb
+                    Riccardo éppen gépel... 1
+              - column:
+                  name: QUANTITY
+                  value: 6
+              - column:
+                  name: AUTHOR_ID
+                  value: 1
+              - column:
+                  name: CATEGORY_ID
+                  value: 1
+  
+  - changeSet:
+      id: 2019-09-25-9
+      author: stgm
+      changes:
+        - insert:
+            tableName: BOOK
+            columns:
+              - column:
+                  name: ID
+                  value: 2
+              - column:
+                  name: VERSION
+                  value: 0
+              - column:
+                  name:  CREATED_AT
+                  value: NOW()
+              - column:
+                  name:  MODIFIED_AT
+                  value: NOW()
+              - column:
+                  name: TITLE
+                  value: Sparrow
+              - column:
+                  name: PUBLISHER
+                  value: Park könyvkiadó
+              - column:
+                  name: PREFACE
+                  value: A név, amit mindenki ismer Dél-Bostonban. Egy néhai maffiózó fia. A jeges kék szemű szívrabló.
+              - column:
+                  name: CONTENT
+                  value: A \"lerendező\", aki ebben a városban bárkit simán magasba emel vagy porba tipor.
+                    Ja, és egyébként az újdonsült férjem. Sparrow Raynes  Ez meg én volnék. A kutya sem bírta megjegyezni a nevemet, amíg Troy be nem csörtetett az életembe.
+                    Aztán kalitkába zárt. Foglyul ejtett. És kiiktatott minden lehetőséget, hogy elmenekülhessek onnét, ahol fölcseperedtünk.
+                    Úgy is mondhatnám, hogy Troy Brennan megnyirbálta a szárnyaimat.
+                    Vannak álmaim, méghozzá merészek, de kétlem, hogy valaha is engedi valóra váltanom őket. Fogalmam sincs, miért döntött úgy, hogy feleségül vesz. Azt azonban tudom, hogy ha kiakasztom ezt a pasast, annak nem lesz jó vége. De nem ám.
+                    L. J. Shen a világon mindenütt lakott már, és végül Észak-Kaliforniában állapodott meg, leginkább a borok miatt. Megélhetésként ír és szórakozásként olvas. Egy fiúgyermek büszke anyukája, egy volt kóbor macska gazdija, valamint egy nagyon türelmes férj tuti felesége.
+                    Kemény, de élvezni fogod! Hagyd, hogy elraboljon!
+              - column:
+                  name: QUANTITY
+                  value: 8
+              - column:
+                  name: AUTHOR_ID
+                  value: 2
+              - column:
+                  name: CATEGORY_ID
+                  value: 2
+  
+  - changeSet:
+      id: 2019-09-25-10
+      author: stgm
+      changes:
+        - insert:
+            tableName: BOOK
+            columns:
+              - column:
+                  name: ID
+                  value: 3
+              - column:
+                  name: VERSION
+                  value: 0
+              - column:
+                  name:  CREATED_AT
+                  value: NOW()
+              - column:
+                  name:  MODIFIED_AT
+                  value: NOW()
+              - column:
+                  name: TITLE
+                  value: Real
+              - column:
+                  name: PUBLISHER
+                  value: Panem kiadó
+              - column:
+                  name: PREFACE
+                  value: Forró. Szexi. Erőteljes. Valós. A perzselő nemzetközi bestseller, amely pőrére vetkőztet mindent, amit a szenvedélyről hittél.
+              - column:
+                  name: CONTENT
+                  value: "Remington Tate rossz fiú hírében áll a ringben és a ringen kívül is. Gránitkemény testétől, nyers, állati erejétől minden női rajongója megvadul. Ám attól fogva, hogy a pillantásuk találkozik, neki csak egyetlen nő kell: Brook Dumas. A vágya tiszta, mindent felemésztő, VALÓS.
+                          Miután szerződtetik, hogy Remy tökéletes testét olajozott gépként működtesse, Brooke úgy érzi, megtalálta álmai jól fizető sportterapeuta melóját. De mialatt a pinceharc veszedelmes világát járja Remyvel és csapatával, az ő testében is felhorgad a zsigeri vágy. Könnyed flörtnek indult Brooke és Remy kapcsolata, de csakhamar erotikus megszállottságban csúcsosodik mindkettőjüknél, és még többel kecsegtet.
+                          De izzó szenvedélyük mögött ott lapul a sötétség, és felmerül a kérdés, hogy amikor fény derül Remy legmélyebb titkára, vagy amikor Brooke családi kötelezettsége tetteket követel, vajon képesek lesznek-e egymás mellett kitartani? Vagy minden, ami annyira igazinak tűnt, szétfoszlik, akár a káprázat?"
+              - column:
+                  name: QUANTITY
+                  value: 10
+              - column:
+                  name: AUTHOR_ID
+                  value: 3
+              - column:
+                  name: CATEGORY_ID
+                  value: 3
+
+  - changeSet:
+      id: 2019-09-25-11
+      author: stgm
+      changes:
+        - insert:
+            tableName: ROLE
+            columns:
+              - column:
+                  name: ID
+                  value: 2
+              - column:
+                  name: VERSION
+                  value: 0
+              - column:
+                  name:  CREATED_AT
+                  value: NOW()
+              - column:
+                  name:  MODIFIED_AT
+                  value: NOW()
+              - column:
+                  name: ROLE_NAME
+                  value: USER
+
+  - changeSet:
+      id: 2019-09-25-13
+      author: stgm
+      changes:
+        - insert:
+            tableName: USERS_ROLES
+            columns:
+              - column:
+                  name: ROLE_ID
+                  value: 2
+              - column:
+                  name: USER_ID
+                  value: 2

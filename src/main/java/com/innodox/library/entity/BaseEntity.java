@@ -29,7 +29,8 @@ import java.util.Objects;
 public class BaseEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "default_gen")
+    @Column(name = "ID", nullable = false, unique = true, updatable = false, length = 32)
     protected Long id;
 
     @Version

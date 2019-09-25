@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Setter
 @Entity
 @Table(name = "BOOK", schema = "public")
-@SequenceGenerator(name = "default_gen", sequenceName = "SEQ_BOOK")
+@SequenceGenerator(name = "default_gen", sequenceName = "book_seq", allocationSize = 1)
 public class Book extends BaseEntity {
 
     @Column(name = "TITLE", nullable = false)
@@ -27,8 +27,7 @@ public class Book extends BaseEntity {
     @Column(name = "PREFACE", nullable = false)
     private String preface;
 
-    @Lob
-    @Column(name = "CONTENT", nullable = false)
+    @Column(name = "CONTENT", columnDefinition = "clob", nullable = false)
     private String content;
 
     @Column(name = "QUANTITY", nullable = false)

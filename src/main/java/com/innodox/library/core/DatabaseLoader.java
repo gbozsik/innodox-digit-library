@@ -171,7 +171,7 @@
 //
 //        List<User> users = Arrays.asList(
 //                new User("skovi", "sanyi.kovacs@gmail.com", "Sanyi", "kovács", new Password("pas"), new String[]{"ROLE_ADMIN", "ROLE_USER"}),
-//                new User("sferi", "feri.sos@t-online.com", "Feri", "sós", new Password("pas"), new String[]{"ROLE_USER"}),
+//                new User("sferi", "feri.sos@t-online.com", "Feri", "Sós", new Password("pas"), new String[]{"ROLE_USER"}),
 //                new User("ktomi", "tamas.kis@gmail.com", "Tomi", "kis", new Password("pas"), new String[]{"ROLE_USER"})
 //        );
 //        userRepo.saveAll(users);

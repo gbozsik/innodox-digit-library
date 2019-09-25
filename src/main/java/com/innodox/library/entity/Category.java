@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Entity
 @NoArgsConstructor
 @Table(name = "CATEGORY", schema = "public")
-@SequenceGenerator(name = "default_gen", sequenceName = "SEQ_CATEGORY")
+@SequenceGenerator(name = "default_gen", sequenceName = "category_seq", allocationSize = 1)
 public class Category extends BaseEntity {
 
     @Column(name = "NAME", nullable = false)

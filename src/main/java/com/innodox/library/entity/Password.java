@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Setter
 @Entity
 @Table(name = "PASSWORD", schema = "public")
-@SequenceGenerator(name = "default_gen", sequenceName = "SEQ_PASSWORD")
+@SequenceGenerator(name = "default_gen", sequenceName = "password_seq", allocationSize = 1)
 public class Password extends BaseEntity {
 
     public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();

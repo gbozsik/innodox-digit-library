@@ -18,7 +18,7 @@ import java.util.List;
 @Entity
 @EqualsAndHashCode(of = {"id", "firstName", "lastName"}, callSuper = true)
 @Table(name = "AUTHOR", schema = "public")
-@SequenceGenerator(name = "default_gen", sequenceName = "SEQ_AUTHOR")
+@SequenceGenerator(name = "default_gen", sequenceName = "author_seq", allocationSize = 1)
 public class Author extends BaseEntity {
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)

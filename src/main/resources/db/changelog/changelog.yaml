@@ -41,17 +41,17 @@ databaseChangeLog:
                   type: INTEGER
             tableName: AUTHOR
   
-#  - changeSet:
-#      id: 2019-09-16-2
-#      author: stgm
-#      changes:
-#        - createSequence:
-#            cycle: true
-#            incrementBy: 1
-#            maxValue: 999999999
-#            minValue: 1
-#            sequenceName: AUTHOR_SEQ
-#            startValue: 1
+  - changeSet:
+      id: 2019-09-16-2
+      author: stgm
+      changes:
+        - createSequence:
+            cycle: true
+            incrementBy: 1
+            maxValue: 999999999
+            minValue: 1
+            sequenceName: AUTHOR_SEQ
+            startValue: 1
   
   - changeSet:
       id: 2019-09-17-3
@@ -98,12 +98,12 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                   name: PREFACE
-                  type: VARCHAR2(25)
+                  type: VARCHAR2(1000)
               - column:
                   constraints:
                     nullable: false
                   name: CONTENT
-                  type: CLOB
+                  type: TEXT
               - column:
                   name: QUANTITY
                   type: INTEGER
@@ -437,86 +437,86 @@ databaseChangeLog:
             referencedTableName: user
             validate: true
   
-#  - changeSet:
-#      id: 2019-09-19-5
-#      author: stgm
-#      changes:
-#        - createSequence:
-#            cycle: true
-#            incrementBy: 1
-#            maxValue: 999999999
-#            minValue: 1
-#            sequenceName: BOOK_SEQ
-#            startValue: 1
-#
-#  - changeSet:
-#      id: 2019-09-19-6
-#      author: stgm
-#      changes:
-#        - createSequence:
-#            cycle: true
-#            incrementBy: 1
-#            maxValue: 999999999
-#            minValue: 1
-#            sequenceName: CATEGORY_SEQ
-#            startValue: 1
-#
-#  - changeSet:
-#      id: 2019-09-19-7
-#      author: stgm
-#      changes:
-#        - createSequence:
-#            cycle: true
-#            incrementBy: 1
-#            maxValue: 999999999
-#            minValue: 1
-#            sequenceName: PASSWORD_SEQ
-#            startValue: 1
-#
-#  - changeSet:
-#      id: 2019-09-19-8
-#      author: stgm
-#      changes:
-#        - createSequence:
-#            cycle: true
-#            incrementBy: 1
-#            maxValue: 999999999
-#            minValue: 1
-#            sequenceName: ROLE_SEQ
-#            startValue: 1
-#
-#  - changeSet:
-#      id: 2019-09-19-9
-#      author: stgm
-#      changes:
-#        - createSequence:
-#            cycle: true
-#            incrementBy: 1
-#            maxValue: 999999999
-#            minValue: 1
-#            sequenceName: user_seq
-#            startValue: 1
-#
-#  - changeSet:
-#      id: 2019-09-19-10
-#      author: stgm
-#      changes:
-#        - createSequence:
-#            cycle: true
-#            incrementBy: 1
-#            maxValue: 999999999
-#            minValue: 1
-#            sequenceName: USERS_BOOKS_SEQ
-#            startValue: 1
-#
-#  - changeSet:
-#      id: 2019-09-19-11
-#      author: stgm
-#      changes:
-#        - createSequence:
-#            cycle: true
-#            incrementBy: 1
-#            maxValue: 999999999
-#            minValue: 1
-#            sequenceName: USERS_ROLES_SEQ
-#            startValue: 1
+  - changeSet:
+      id: 2019-09-19-5
+      author: stgm
+      changes:
+        - createSequence:
+            cycle: true
+            incrementBy: 1
+            maxValue: 999999999
+            minValue: 1
+            sequenceName: BOOK_SEQ
+            startValue: 1
+
+  - changeSet:
+      id: 2019-09-19-6
+      author: stgm
+      changes:
+        - createSequence:
+            cycle: true
+            incrementBy: 1
+            maxValue: 999999999
+            minValue: 1
+            sequenceName: CATEGORY_SEQ
+            startValue: 1
+
+  - changeSet:
+      id: 2019-09-19-7
+      author: stgm
+      changes:
+        - createSequence:
+            cycle: true
+            incrementBy: 1
+            maxValue: 999999999
+            minValue: 1
+            sequenceName: PASSWORD_SEQ
+            startValue: 1
+
+  - changeSet:
+      id: 2019-09-19-8
+      author: stgm
+      changes:
+        - createSequence:
+            cycle: true
+            incrementBy: 1
+            maxValue: 999999999
+            minValue: 1
+            sequenceName: ROLE_SEQ
+            startValue: 1
+
+  - changeSet:
+      id: 2019-09-19-9
+      author: stgm
+      changes:
+        - createSequence:
+            cycle: true
+            incrementBy: 1
+            maxValue: 999999999
+            minValue: 1
+            sequenceName: user_seq
+            startValue: 1
+
+  - changeSet:
+      id: 2019-09-19-10
+      author: stgm
+      changes:
+        - createSequence:
+            cycle: true
+            incrementBy: 1
+            maxValue: 999999999
+            minValue: 1
+            sequenceName: USERS_BOOKS_SEQ
+            startValue: 1
+
+  - changeSet:
+      id: 2019-09-19-11
+      author: stgm
+      changes:
+        - createSequence:
+            cycle: true
+            incrementBy: 1
+            maxValue: 999999999
+            minValue: 1
+            sequenceName: USERS_ROLES_SEQ
+            startValue: 1

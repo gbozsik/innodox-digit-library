@@ -18,7 +18,7 @@ import java.util.List;
 @Getter
 @Entity
 @Table(name = "ROLE", schema = "public")
-@SequenceGenerator(name = "default_gen", sequenceName = "SEQ_ROLE")
+@SequenceGenerator(name = "default_gen", sequenceName = "role_seq", allocationSize = 1)
 public class Role extends BaseEntity {
 
     @Column(name = "ROLE_NAME", nullable = false)

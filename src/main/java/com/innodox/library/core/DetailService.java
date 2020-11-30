@@ -12,8 +12,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
-import java.util.logging.Logger;
-
 
 /**Implementálja a spring inerface-eket és megváltoztatja ami a mi felhasználónk igénye szerint,
  *hogy mit adunk vissza a Spring-nek a a loadByUserName metódusával
@@ -23,8 +21,6 @@ import java.util.logging.Logger;
 
 @Component
 public class DetailService implements UserDetailsService, UserDetails {
-
-    private static final Logger logger = Logger.getLogger(DetailService.class.getName());
 
     private UserRepo userRepository;
     private UserService userService;

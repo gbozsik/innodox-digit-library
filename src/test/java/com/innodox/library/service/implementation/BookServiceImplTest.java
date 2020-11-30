@@ -60,6 +60,7 @@ public class BookServiceImplTest {
 
     private Book book;
     private Book bookToRent;
+    private Book bookToSave;
     private Category category;
     private Author author;
     private List<Book> bookList;
@@ -82,12 +83,20 @@ public class BookServiceImplTest {
         author = new Author();
         author.setAge(30);
         author.setBooks(new ArrayList<>());
+
         book.setId(1L);
         book.setCategory(category);
         book.setAuthor(author);
         book.setQuantity(3);
+
+        bookToSave = new Book();
+        bookToSave.setCategory(category);
+        bookToSave.setAuthor(author);
+        bookToSave.setQuantity(6);
+
         bookToRent.setId(3L);
         bookToRent.setQuantity(4);
+
         bookList = new ArrayList<>();
         bookList.add(book);
         List<Book> bookList = new ArrayList<>();
@@ -111,7 +120,10 @@ public class BookServiceImplTest {
     @Test
     public void saveBook() throws Exception {
         when(bookRepo.save(any())).thenReturn(book);
-        BookModel savedBookModel = bookServiceImpl.saveBook(bookMapper.mapBookToBookModel(book));
+        when(bookRepo.findById(any())).thenReturn(Optional.ofNullable(bookToSave));
+
+        BookModel savedBookModel = bookServiceImpl.saveBook(bookMapper.mapBookToBookModel(bookToSave));
+
         assertEquals(savedBookModel.getCategoryModel().getName(), book.getCategory().getName());
         assertEquals(savedBookModel.getAuthorModel().getAge(), book.getAuthor().getAge());
         verify(bookRepo, times(1)).save(any());
@@ -120,14 +132,15 @@ public class BookServiceImplTest {
     @Test
     public void rentBook() throws Exception {
         when(bookRepo.findById(any())).thenReturn(Optional.ofNullable(bookToRent));
-        when(userRepo.findByUsername(any())).thenReturn(user);
+        when(userRepo.findByEmail(any())).thenReturn(user);
         when(securityContext.getAuthentication()).thenReturn(authentication);
         SecurityContextHolder.setContext(securityContext);
 
         UserModel userModelReturned = bookServiceImpl.rentBook(bookToRent.getId());
+
         assertEquals(userModelReturned.getBookModelList().size(), 2);
         verify(bookRepo, times(1)).findById(any());
-        verify(userRepo, times(1)).findByUsername(any());
+        verify(userRepo, times(1)).findByEmail(any());
     }
 
     @Test

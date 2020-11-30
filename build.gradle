@@ -1,23 +1,8 @@
-//buildscript {
-//    ext {
-//        springBootVersion = '2.0.6.RELEASE'
-//    }
-//    repositories {
-//        mavenCentral()
-//    }
-//    dependencies {
-//        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-//    }
-//}
 plugins {
     id 'org.springframework.boot' version '2.1.7.RELEASE'
     id 'io.spring.dependency-management' version '1.0.7.RELEASE'
     id 'java'
 }
-//apply plugin: 'java'
-//apply plugin: 'eclipse'
-//apply plugin: 'org.springframework.boot'
-//apply plugin: 'io.spring.dependency-management'
 
 group = 'com.innodox'
 version = '0.0.1-SNAPSHOT'
@@ -45,14 +30,10 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter-web') {
         exclude module: 'spring-boot-starter-logging'
     }
-//    runtimeOnly('com.h2database:h2')
+    runtimeOnly('com.h2database:h2')
     compile group: 'org.postgresql', name: 'postgresql', version: '9.4-1200-jdbc41'
     compile group: 'com.zaxxer', name: 'HikariCP', version: '3.3.1'
     compile group: 'org.liquibase', name: 'liquibase-core', version: '3.8.0'
-
-    //multiple versions of JPA libraries if active
-//    compile group: 'org.liquibase.ext', name: 'liquibase-hibernate4', version: '3.6'
-
 
     testImplementation('org.springframework.boot:spring-boot-starter-test')
     testImplementation('org.springframework.security:spring-security-test')

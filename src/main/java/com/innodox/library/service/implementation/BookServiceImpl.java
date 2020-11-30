@@ -96,7 +96,7 @@ public class BookServiceImpl implements BookService {
     }
 
     private Category setCategoryFromBookModel(BookModel bookModel) throws Exception {
-        if (Objects.isNull(bookModel.getCategoryModel().getId())) {
+        if (Objects.isNull(bookModel.getCategoryModel()) || Objects.isNull(bookModel.getCategoryModel().getId())) {
             throw new Exception("Category not found!");
         }
         return categoryRepo.findById(bookModel.getCategoryModel().getId()).orElse(null);
@@ -157,7 +157,7 @@ public class BookServiceImpl implements BookService {
     }
 
     private User getUserFromDB() {
-        return userRepo.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+        return userRepo.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
     }
 
     private void validateBookIsRentable(Book bookFromDB, List<Book> usersBooks) throws Exception {

@@ -31,14 +31,12 @@ public class LoginContorller {
 
     @RequestMapping(value = "/loggingout", method = RequestMethod.GET)
     public ResponseEntity<String> logout() {
-//        logger.info("ActualUser: " + SecurityContextHolder.getContext().getAuthentication().getName());
         SecurityContextHolder.clearContext();
         return new ResponseEntity<>("Logged out", HttpStatus.OK);
     }
 
     @RequestMapping(value = "/getactualuser", method = RequestMethod.GET)
     public ResponseEntity<UserModel> getActualUser() {
-//        logger.info(SecurityContextHolder.getContext().getAuthentication().getName());
          UserModel actualUser = userService.getActualUser();
         return new ResponseEntity<>(actualUser, HttpStatus.OK);
     }

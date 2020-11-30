@@ -2,7 +2,6 @@ package com.innodox.library.entity;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.omg.PortableInterceptor.USER_EXCEPTION;
 
 import java.util.Arrays;
 import java.util.List;

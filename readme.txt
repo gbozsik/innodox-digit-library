@@ -4,11 +4,11 @@ Compile it in your ide, than you can reach the app at localhost:9000 in your bro
 Or Build it with Gradle, than run the jar file in terminal, in its folder: ~/build/libs/java -jar library-0.0.1-SNAPSHOT.jar
 
 
-Users:					       Password:
+Users:					  Password:
 
 sanyi.kovacs@gmail.com, 		pas
 feri.sos@t-online.com,			pas
-tamas.kis@gmail.com			    pas
+tamas.kis@gmail.com			pas
 
 Spring Boot app.
 Built with Gradle.
